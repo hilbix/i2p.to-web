@@ -1,0 +1,13 @@
+#!/bin/bash
+
+awk -F '","' '
+function ip(s,a)
+{
+  split(s,a,/\./);
+  return sprintf("%03d.%03d.%03d.%03d", a[1],a[2],a[3],a[4]);
+}
+BEGIN { c='"\"'\""'; print "begin; delete from ip_country;" }
+END { print "end;" }
+
+{ sub(/^"/,"",$1); printf("insert into ip_country values ( %c%s%c,%c%s%c,%c%s%c );\n", c,ip($1),c, c,ip($2),c, c,$5,c) }
+' GeoIPCountryWhois.csv

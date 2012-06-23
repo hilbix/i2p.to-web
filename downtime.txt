@@ -1,0 +1,3 @@
+[2012-04-14] Another temporary (somewhat more stable) router link up.  But still expect sudden downtimes.
+Note that this temporary router link is not and will not be detected as "up",
+so you always see the "I2P router currently down!" message.

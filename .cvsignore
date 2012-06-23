@@ -1,0 +1,7 @@
+*.old
+old
+graph-*.gif
+.du.out
+graph.inc
+BACKUPROUTER
+google*.html

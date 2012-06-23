@@ -1,0 +1,9 @@
+#!/bin/sh
+# $Header: /CVSROOT/www/i2p.to/web/stat/.disable,v 1.1 2009-01-26 08:01:21 tino Exp $
+#
+# $Log: .disable,v $
+# Revision 1.1  2009-01-26 08:01:21  tino
+# Deadloop starts with setting itself to finished, not deleting the entry.
+#
+
+sqlite stat.sqlite "update t_proc set c_state='disabled' where c_pid<>0;"

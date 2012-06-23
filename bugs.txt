@@ -1,0 +1,53 @@
+[2008-07-?? added 2009-01-26] Sites with no return data currently do not show up in history as 000 site.
+If you ever wondered why the yellow 000 destinations vanished while the pink flap count
+returned to normal back in July 2008, here is what happened (I do not remember what and when I
+changed it, changes were not tracked by CVS these days):
+<p>
+When probing certain destinations like IRC servers, the existence of these destinations
+will currently not be detected.  This is because these destinations do not return anything
+on an HTTP request.  So the test script will see 0 bytes, which (for the time being) is
+taken as "nothing came back" with return code "000" which in turn is taken as
+"check script failed" which in turn is discarded.  Those destinations is supposed to
+show up as "000", though, but it does not work, hence a bug.
+It is difficult to distinguish this with some transport error which might look
+the same (when the connection to the proxy breaks, for example) and which does more
+"harm" in regard to "bad times", when something is instable.
+<p>
+In the status graph you can see when I "fixed" some detection problem back in July 2008,
+this is where the high pink flap-line in the graph starts to drop down to normal again.
+From this time on the graph does no more show "yellow" status for all those 000 sites.
+This fixed a problem, where "red" often was detected wrongly as "yellow", which gives us
+a "false" flap and therefor had risen the pink flap counter to countless height.  In contrast,
+not detecting the presence of a 000 site is mostly harmless, as you cannot connect there through
+the inProxy via HTTP anyway.  However it somehow shows a wrong history of those destinations.
+<p>
+Consequences from this bug:  Those destinations (like irc.postman.i2p) do not show any history
+for successful probes since June 2008.  AFAICS the probe loop does exclude the destinations, too
+(as only successful last probed destinations are probed there), and they are partially
+probed by the deadloop, which makes 1 to 4 probes each day sent to those sites.
+None of those probes shows up in the history if it is successful, if not, it is shown
+in history as "red" or sometimes "yellow" (gateway timeout).  So a missing(!) entry in the
+history currently shows that the probe was successful for such destinations.  Weird.
+<p>
+Fixing this bug has a very very very low priority.
+
+[2008-08-28] Slingshot-Routing Bug fixed:
+When comming from I2P links no more point outside I2P if possible.
+<br>
+However, two issues remain:
+<ul>
+<li> Still a lot of links point outside I2P, there is missing a warning page for that case.</li>
+<li> Addresshelper support is still not implemented</li>
+</ul>
+
+[2005-11-29] The mirroring facility (Mirror link above) does not work as expected.
+I don't put a lot of effort into this, as this is not an important feature.
+(added 2006-06-02)
+
+[GLOBAL] There is a global BUG which makes it impossible to use (permanent) Cookies through my I2PinProxy.
+This lack of feature is by design.  It is not thought to be fixed.
+<P>
+<b>This means for you:</b>
+You cannot login into forums or post stuff onto boards in I2P through this I2PinProxy
+if Cookies are involved.  If you want to use Cookies, please consider installing I2P.
+</P>

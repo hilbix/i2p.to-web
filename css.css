@@ -1,0 +1,149 @@
+/* $Header: /CVSROOT/www/i2p.to/web/css.css,v 1.4 2009-11-16 16:04:05 tino Exp $
+ *
+ * $Log: css.css,v $
+ * Revision 1.4  2009-11-16 16:04:05  tino
+ * Advertisement added ;)
+ *
+ * Revision 1.3  2009-04-26 04:13:23  tino
+ * FAQ index and new FAQ (addresschange) added
+ *
+ * Revision 1.2  2008/08/28 19:18:28  tino
+ * New menu structure
+ *
+ * Revision 1.1  2008/08/28 09:52:27  tino
+ * Added
+ *
+ */
+TABLE			{ background-color:#ffffff; color:#000000; border-style:solid; border-width:1px; border-spacing:3px; border-color:#000000; padding:3px; empty-cells:show; border-collapse:collapse }
+TABLE.noborder		{ border-style:none; padding:0px; border-collapse:collapse }
+#TR			{ border-top:1px; border-bottom:1px }
+TR			{ }
+TH			{ padding:2px }
+TH:hover		{ background-color:#ccccff }
+TH:hover A		{ background-color:#ffff44 }
+TH A:hover		{ background-color:#ffaaaa }
+TH.histt		{
+			   border-left:1px;   border-left-color:black;   border-left-style:solid;
+			    border-top:1px;    border-top-color:black;    border-top-style:solid;
+			  border-right:1px;  border-right-color:black;  border-right-style:solid;
+			 border-bottom:1px; border-bottom-color:white; border-bottom-style:none;
+			  padding-left:1px;
+			   padding-top:0px;
+			 padding-right:1px;
+			padding-bottom:0px;
+			}
+TR:hover TH.histt	{
+			background-color:#eeeeff;
+			   border-left:1px;   border-left-color:black;   border-left-style:solid;
+			    border-top:1px;    border-top-color:black;    border-top-style:solid;
+			  border-right:1px;  border-right-color:black;  border-right-style:solid;
+			 border-bottom:1px; border-bottom-color:black; border-bottom-style:none;
+			  padding-left:1px;
+			   padding-top:0px;
+			 padding-right:1px;
+			padding-bottom:0px;
+			}
+TH.histl		{
+			   border-left:1px;   border-left-color:black;   border-left-style:solid;
+			    border-top:1px;    border-top-color:black;    border-top-style:none;
+			  border-right:1px;  border-right-color:black;  border-right-style:none;
+			 border-bottom:1px; border-bottom-color:black; border-bottom-style:solid;
+			  padding-left:1px;
+			   padding-top:1px;
+			 padding-right:1px;
+			padding-bottom:0px;
+			}
+TR:hover TH.histl	{
+			background-color:#eeeeff;
+			   border-left:1px;   border-left-color:black;   border-left-style:solid;
+			    border-top:1px;    border-top-color:black;    border-top-style:none;
+			  border-right:1px;  border-right-color:black;  border-right-style:none;
+			 border-bottom:1px; border-bottom-color:black; border-bottom-style:solid;
+			  padding-left:1px;
+			   padding-top:1px;
+			 padding-right:1px;
+			padding-bottom:0px;
+			}
+TH.histr		{
+			   border-left:1px;   border-left-color:black;   border-left-style:solid;
+			    border-top:1px;    border-top-color:black;    border-top-style:solid;
+			  border-right:1px;  border-right-color:black;  border-right-style:solid;
+			 border-bottom:1px; border-bottom-color:black; border-bottom-style:none;
+			  padding-left:1px;
+			   padding-top:0px;
+			 padding-right:1px;
+			padding-bottom:0px;
+			}
+TR:hover TH.histr	{
+			   border-left:1px;   border-left-color:black;   border-left-style:solid;
+			    border-top:1px;    border-top-color:black;    border-top-style:solid;
+			  border-right:1px;  border-right-color:black;  border-right-style:solid;
+			 border-bottom:1px; border-bottom-color:black; border-bottom-style:none;
+			  padding-left:1px;
+			   padding-top:0px;
+			 padding-right:1px;
+			padding-bottom:0px;
+			}
+TD			{ padding:0px }
+TD.data			{ padding:1px; padding-left:1mm; padding-right:1mm; border-spacing:0px; white-space:nowrap }
+
+TD.datar		{ padding:1px; padding-left:1mm; padding-right:1mm; border-spacing:0px; white-space:nowrap; background-color:#ff0000 }
+TR:hover TD.datar	{ padding:1px; padding-left:1mm; padding-right:1mm; border-spacing:0px; white-space:nowrap; background-color:#e04040 }
+TD.datay		{ padding:1px; padding-left:1mm; padding-right:1mm; border-spacing:0px; white-space:nowrap; background-color:#ffff00 }
+TR:hover TD.datay	{ padding:1px; padding-left:1mm; padding-right:1mm; border-spacing:0px; white-space:nowrap; background-color:#dddd60 }
+TD.datag		{ padding:1px; padding-left:1mm; padding-right:1mm; border-spacing:0px; white-space:nowrap; background-color:#00ff00 }
+TR:hover TD.datag	{ padding:1px; padding-left:1mm; padding-right:1mm; border-spacing:0px; white-space:nowrap; background-color:#40cc40 }
+
+TD.dataf		{ padding:1px; padding-left:1mm; padding-right:1mm; border-spacing:0px; white-space:nowrap; background-color:#ffffff }
+TD.datad		{ padding:1px; padding-left:1mm; padding-right:1mm; border-spacing:0px; white-space:nowrap; background-color:#dddddd }
+TD.data8		{ padding:1px; padding-left:1mm; padding-right:1mm; border-spacing:0px; white-space:nowrap; background-color:#888888 }
+
+.line0			{ background-color:#eeeeee }
+.line1			{ background-color:#dddddd }
+.line0:hover		{ background-color:#ccccff }
+.line1:hover		{ background-color:#ccccff }
+.show			{ white-space:pre }
+.border			{ padding:2px; border:1px dashed; border-left:0px; border-top:0px }
+.border2		{ padding:2px; border:1px dashed; border-left:0px }
+.borderf		{ padding:2px; border:1px dashed }
+
+         .red		{ background-color:#ff0000 }
+TR:hover .red		{ background-color:#e04040 }
+         .yellow	{ background-color:#ffff00 }
+TR:hover .yellow	{ background-color:#dddd60 }
+         .green		{ background-color:#00ff00 }
+TR:hover .green		{ background-color:#40cc40 }
+
+         .red1		{ background-color:#ff0000; font-weight:bold }
+TR:hover .red1		{ background-color:#e04040; font-weight:bold }
+         .yellow1	{ background-color:#ffff00; font-weight:bold }
+TR:hover .yellow1	{ background-color:#dddd60; font-weight:bold }
+         .green1	{ background-color:#00ff00; font-weight:bold }
+TR:hover .green1	{ background-color:#40cc40; font-weight:bold }
+
+	 .trouble	{ background-color:#eeccdd; font-weight:bold; padding:5px; border:2px solid black; text-align:left }
+	 .blink		{ text-decoration:blink }
+	 .ad		{ background-color:#cccccc; padding:5px; border:1px solid black; text-align:left }
+
+.ord			{ font-family:serif; font-weight:normal; font-size:small; text-decoration:none }
+.ordinv			{ font-family:serif; font-weight:normal; font-size:small; text-decoration:none; border:1px solid }
+.nobr			{ white-space:pre; }
+
+/* If you want to highlight the cell with the mouse use this:
+*/
+
+/*
+TD.data:hover		{ padding:1px; padding-left:1mm; padding-right:1mm; border-spacing:0px; white-space:nowrap; background-color:#ffffff }
+
+TR:hover TD.datar:hover	{ padding:1px; padding-left:1mm; padding-right:1mm; border-spacing:0px; white-space:nowrap; background-color:#ff8080 }
+TR:hover .red:hover	{ background-color:#ff8080 }
+TR:hover .red1:hover	{ background-color:#ff8080; font-weight:bold }
+
+TR:hover TD.datay:hover	{ padding:1px; padding-left:1mm; padding-right:1mm; border-spacing:0px; white-space:nowrap; background-color:#ffffaa }
+TR:hover .yellow:hover	{ background-color:#ffffaa }
+TR:hover .yellow1:hover	{ background-color:#ffffaa; font-weight:bold }
+
+TR:hover TD.datag:hover	{ padding:1px; padding-left:1mm; padding-right:1mm; border-spacing:0px; white-space:nowrap; background-color:#aaffaa }
+TR:hover .green:hover	{ background-color:#aaffaa }
+TR:hover .green1:hover	{ background-color:#aaffaa; font-weight:bold }
+*/

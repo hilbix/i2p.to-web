@@ -1,0 +1,15 @@
+#!/bin/sh
+# $Header: /home/tino/CVSROOT/i2pinproxy/stat/.fixup,v 1.1 2008/08/28 11:02:36 tino Exp $
+#
+# $Log: .fixup,v $
+# Revision 1.1  2008/08/28 11:02:36  tino
+# Added
+#
+
+cd "`dirname "$0"`" || exit
+
+echo ".timeout 15000
+update t_proc set c_state='finished' where c_name='hourly' or c_name='probeloop';
+" |
+sqlite stat.sqlite
+

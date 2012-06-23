@@ -1,0 +1,9 @@
+CVS/
+old/
+*~
+.du.*
+graph-*.gif
+downtime.txt.*
+google*.html
+graph.inc
+*.dbm

@@ -1,0 +1,344 @@
+[2012-06-23] It's all blue and I have not the slightest idea.
+<br>
+Well, the stats shows that 404 is now quite common.  The last router's reboot was 19 days ago and this seems to be the time where the spook began.
+Perhaps my proxy is on holidays (out in the blue)?
+
+[2012-06-16] Search engines overload
+<br>
+There are so many crawlers on my status.php page, that it is currently completely overloaded.
+This was due to a bug that the crawlers saw too any valid status pages.  This now has been fixed.
+To allow the stress to the database to settle more quickly the history view in the status page now shows blank line if the database is too busy.
+This is not a bug, it is a workaround until I find a better solution to this issue.
+Note that you can see another more detailed view of any eepsite by following the "h" link in the "info" column.
+
+[2012-05-06] Autlearning works now
+<br>
+Restarted the "probeloop" script the hard way.
+Forgot to do that before, such that the new autolearning sources were not used, because the old script still ran.
+Now new destinations should start to pour in.
+
+[2012-04-30] Autlearning enabled, somehow.
+<br>
+Still nothing is in the state which I want it to reach.  However to improve the situation,
+autolearning of new destinations was enabled again, by adding the hosts.txt of my temporary router to autolearning.
+<br>
+This step is not to reduce the number of blue destinations which are still *unknown* in the router's addressbook.
+In contrast this allows the inProxy to track all destinations *known* to the router's addressbook again.
+<br>
+Please note that this inProxy can reach destinations which are not shown in the overview but are known to the router's address book.
+This is because the inProxy just hands any request to the router, and if the router can access it, it fetches it.
+So all you see here on the web pages are just statistics.   It does not tell anything about the reality.
+So everything is just a hint, not meant to be a complete and all time correct.
+The only important part of this inProxy is the router's link, and it looks like this is now much better again.
+<br>
+Ah, BTW: Some "new" destinations which showed up in the last days are actually old ones becomming reachable again.
+Example welcometoomsk.i2p:  This apparently was learned a long time ago but was unreachable from my test router.
+It looks like it became reachable after switching to the temporary router.  As probing is done very slow for 
+unreachable destinations, the probe count of this destination stayed low, so it looks like it is a new destination.
+But it is not.  Autolearning was unavailable for more than 7 months.  Sorry for the delay.
+
+[2012-04-14] Switched to another router
+<br>
+Due to the problems with my cable connection,
+I set up another router temporarily and switched the proxy connection there.
+This is far from the final state I want to reach,
+and the old functionality (learning of new destinations) still is not in place,
+but hopefully this improves the situation.  Sorry for the delay.
+<br>
+Please note that the new router misses some destinations in it's addressbook,
+this is why you see this big blue bar in the graphs.  We need to live with that for now.
+(It's the curse of missing redundancy.)
+
+[2012-04-13] Cable connection was down, again
+<br>
+This time they found another way how to interrupt Internet connectivity.
+The modem stayed up this time, the IP stayed up, but some core router apparently went down.
+So my cable was there but no connection to the rest of the Internet.
+It came down around 23:50 UTC and came back 8:40 UTC on the next day.
+<br>
+The (very instable) temporary router still is behind my cable connection.
+I am aware of the unbearable situation but currently have very few time to fix it.
+Sorry.
+
+[2012-03-07] Cable connection was down
+<br>
+Thank you Kabeldeutschland.
+Again my home cable connection went down for more than 9 hours.
+I really have no idea why the DHCP was unavailable most of the time.
+Remember: Telephony via Cable needs IP connections.  Go figure.
+
+[2012-02-29] Fixed probeloop.
+<br>
+A message on my pager noted me that there is a bug in my proxy.
+The "last probe" loop did not work anymore correctly.
+The problem was, that the list of hosts to probe comes from my routers.
+As both were down, no known host was probed anymore.
+The hourly probe loop still worked, but at a certain point the proxy came down for longer than a day - and since then it stopped working alltogether.
+Sorry for that.
+Especially because I still not have found the time to bring back Router1 and 2, such that everything only runs with my instable development router link.
+<br>
+The bug is fixed, a bit.
+
+
+[2012-02-09] Longer unexpected downtime
+<br>
+The machine crashed yesterday and was no more remotely managable.  So I had to contact the service.
+The CPU cooler and fan were repaired, and the machine came back online.
+I hope this fixes the problems of the last days.
+
+[2012-02-01] Unexpected downtime
+<br>
+This proxy went down around 7:10 UTC unexpectedly.
+It took a little more than 16 hours to bring it back up.
+Sorry for the delay.
+<br>
+Note that an image of the harddrive was backed up to another machine in this process.
+Just to be prepared.
+
+[2011-10-26 00:00 UTC] My cable connection came down.  Again.
+<br>
+Perhaps my ISP (Kabeldeutschland AG) wants to become the top candidate of the worst ISP of the world.  I really have no idea.  But apparently they are incapable to provide a stable Internet connection.
+<br>
+The major grief is not that they come down.  The grief is, that they do not announce planned downtimes, they do not have any status page which informs a customer and they have no 24/7 service line either.
+<br>
+But apparently they know.  In the service agreement they only specify an 98% uptime in middle.  This is 3-4 hours downtime each(!) week.  Well, this is no theory, they really use that time up.  Already for the regular downtimes.  Plus the unregular ones.
+<br>
+However the good thing is, that my automated modem resetter kicked in as planned.  This means, everything at my side works as planned.
+<br>
+Another very interesting thing is, that they do VoIP.  So apparently if you have an heart attack while one of their downtimes, you have no chance to survive, because your phone stops working, too.  As they place their service intervall on midnight (apparently), this means that it's likely nobody else is up who possibly could hear your cries before you die.  Go figure.
+<br>
+If I were the controlling authority, I would refuse to license a company offering primary phone lines to customers, if there is less uptime guarantee than 99,99% for the phone lines they provide (this means: It must be forbidden to provide primary phone lines to customers who not already have another proper primary phone line).  99,99% is less than 52 minutes a year, which already is a bit long for technology which is used to call the fire brigade.  BTW the cable phone lines do not work if the power is out.  This is another thing I would prohibit to be sold as primary phone line.  Read:  A mobile never can be a replacement for a primary phone line, too.
+<br>
+Downtime was 15 Minutes.
+
+[2011-10-09 19:15 UTC] My cable connection came down.
+<br>
+My cable connection came down unexpectedly.  The modem sees a carrier, but the IP layer does not work.
+As my temporary router link uses the only broadband I have (the cable) it came down, too.
+Sorry for the delay.  Downtime 2:15 until the modem was manually power-cycled.
+<br>
+As this is the second time within 2 days that my cable modem needed a power cycle.  So I decided to automate this process now.
+The modem is plugged into an IP based power switch, and some hopefully clever script tries to detect when the modem fails to give it a power cycle.
+<br>
+Note that I have a somewhat old Netgear router behind my cable which crashes now and then.  From the old days I had an IP based power switch to reset my SDSL router (this was before consumer broadband/cable were available here) from remote, because this worked better than calling the ISP each time.  Automating the power cycle of the router now works for years, and now this "solution" is extended to the modem as well.  The only thing that puzzles me is the question:  Is it just me, or is cheap consumer equipment really that faulty?
+
+[2011-10-07] Temporary router link now monitored, somehow.
+<br>
+I changed the Reachabiltie's "syncing" state from WARN level to ERR, this should notify my automated monitoring when the temporary router links breaks.  It is much slower than the usual notification when no router is present at all or the machine is failing, but better than nothing.
+<br>
+Downtime due to a link starvation was a bit more than 6 hrs until I noticed the downtime with some luck.
+<br>
+In such a case the web service tells that it is temporarily not available (because the proxy cannot open a socket).  This probably can be considered a bug, as the downtime page should show up in this case, too.
+<br>
+Sadly I still found no time to look into the I2P router issue at my side.
+
+[2011-10-03] Temporary router link up, still in maintainance.
+<br>
+Downtime was 42 hours, see Graph.
+<br>
+To reduce the impact of the downtime I decided to open a temporary manual link to my
+local experimental router here behind my cable modem.  This link is slower, has less
+capacity, is considered to be very unstable and is not permanent.  However it works.
+Note that this is the router where test.tino.i2p runs.
+<br>
+So long following parts are not available:
+<ul><li> Learning of new destinations</li><li>tino.i2p</li><li>The proxy tells that the router is down, which is correct</li><li>all destinations with a more direct link</li><li>Additional webservices like the automated netDB ZIP etc.</li></ul>
+The longer story:
+<br>
+For a long time Router2 is down now. For unknown reason I was unable to get it running.
+I did not put much effort into this until now, and I did not think about it more deeply before.
+However now I have a similar trouble to bring I2P up on the replacement machine, too.
+<br>
+i2psvc fails.  There is not much helpful output in wrapper.log.
+All I see is, that the JVM is started and comes down again immediately.
+And nothing helpful (for me) to quickly find the source of the problem.
+Note that I compiled the installer myself, which would fail without a proper JDK6 installed.
+<br>
+With the temporary link up I have less pressure to try find out what's going on.
+In the next days I now can analyse and compare things, try different approaches
+(like trying the official installer, trying the .deb packages, etc.)
+and come up with a solution - hopefully.
+<br>
+Note that when this solution is found, fproxy.tino.i2p still stays down.
+However I think we afterwards have two I2P routers again.
+<br>
+Also note that I do not run standard environments here on my side.
+I tweaked I2P such, that it runs like I want it to run.
+So perhaps this is a good thing anyway, to bring my side back to the more mainstream settings.
+But this also means that I have to put a lot effort on the trainload of supporting scripts,
+which run I2P, check the proper service, learn new hosts, offer the results to the inProxy etc.
+<br>
+Much work ahead, so this will take time.  Please do not disturb as long as I'm on it ;)
+
+[2011-09-29] Downtime expected.
+<br>
+This weekend the old machine running my I2P router will be killed.
+This is planned.  Not planned was, that I did not came around to
+activate the replacement machine more early.  As I2P has not topmost
+priority, it is possible that the service comes down for some time.
+<br>
+If it is a second or a month I cannot tell yet.  Both are equally unlikely.
+<br>
+Note that this kills my Freenet proxy as well.
+If I can resurrect it is unknown yet.
+
+[2011-08-15] HTTP error codes now served
+<br>
+Until today the proxy did always issue HTTP code 200, even on failed requests.
+This now has been changed for most errors, such that search engines should be less confused.
+The codes have been carefully chosen to support all major browsers (Chrome, FF, IE, Opera).
+For example Firefox does some stange things on 408, so that is unusable.
+<br>
+BTW, the replacement router still is not up.  However the killscript was improved to catch most router errors and restart it, hopefully.
+
+[2011-07-26] Router machine seems to be faulty
+<br>
+The server running the I2P router seems to have some memory corruption problem.
+<b>Thanks ZZZ for tracking down the problem!</b>
+The current plan is to move the router to a new machine.
+The machine has arrived, it awaits to be setup as soon as I have time.
+After setup is complete I will install a Virtualbox running I2P.
+
+[2011-07-21] 2h downtime because Router 0.8.7 has/had some trouble.
+<br>
+On my stone old 64 bit platform running the I2P router the router makes trouble.
+It stops serving requests on port 4444.  Everything else stays fine.
+My eepsite continues to be reachable, the router participates in tunnels,
+the UI and Jetty behave normal, the watchdog does not bite.
+And port 4444 continues to accept connects, however then nothing happens anymore.
+I really do not know what's going on.  Nothing in the traces I can get hold of,
+just stops working on this single port.
+<br>
+Now the newest JVM is installed, hopefully this solves the issue.
+BTW the previous version I used was 0.8.0, then came the jump to 0.8.7,
+so I do not know if really 0.8.7 is the culprit.
+
+[2011-07-18] 11h unexpected downtime
+<br>
+The machine became unresponsive around 1:30 UTC today for unknown causes,
+the machine was up again around 12:30 UTC.
+<br>
+Apparently the machine had to few RAM to boot into Recovery mode.
+The ISP installed more RAM such that I can now boot into recovery again.
+Thank you Server4You, great extra Service!
+
+[2011-06-28] 1 hour downtime or so
+<br>
+After 11 months the logfile of the I2P bridge hit the 2 GB barrier, again.
+OOPS ;)
+
+[2011-05-22] Be sure to secure your eepsite
+<br>
+<a href="http://xxxxx.i2p">xxxxx</a> has an intersting link to a blackhat talk about I2P security.
+The first 43 minutes are introductory, a nice overview over I2P and tools used to launch the attacks.
+Perhaps also look at the history link (h) of your eepsite here on this proxy.
+If you are really bothered I can erase the old historic information (this is a manual task)
+- leave me a message on my pager (see the <a href="/faq.php#faq">FAQ</a>) -,
+but keep in mind, the Internet never forgets even if such information is depublicised here.
+
+[2011-02-04] FAQ section overhauled
+<br>
+The FAQs are now grouped by topics.
+The link to the FAQ now is in the main menu.
+The texts stay the mess they are.
+
+[2011-02-01] Server unavailable for 30 minutes
+<br>
+For unknown reason the whole ISP came down 30 minutes long.
+The two different network segments of the 3 servers
+did not work from 2011-02-01 14:24 to 14:54 UTC.
+
+[2011-01-25] I am convinced now: Today I added censoring.
+<br>
+Because I came across something I do not want to tell, I added censoring.
+That is, the destination will no more show up in the tables in this inProxy.
+This is true for the I2P and non-I2P side of this inProxy.
+The count of censored destinations is shown below the list, though.
+<br>
+Note that there is a way to know that a site is censored using the history page.
+Sites are not deleted, just suppressed, so you still can see a history of this site.
+<br>
+So if you think I am wrong that I censored your site you can contact me, of course.
+However you can do the same if you think, another site deserves censoring, too.
+
+[2011-01-09] i2p.to renewed
+<br>
+To be on the safe side such that I do not forget to renew i2p.to (it would have expired end 2012) I renewed the domain today.
+According to tonic.to the new expiration date is Fri Dec 16 08:13:36 2022.
+Happy new year.
+
+[2011-01-09] Router was down for est. 18 hours
+<br>
+Time is UTC, of course it's Weekend/Sunday.<br>
+2011-01-08 18:00 I left the house<br>
+2011-01-08 18:28 The router server ceased working while still pinging<br>
+2011-01-08 18:45 At home my monitoring's alarm bell starts ringing<br>
+2011-01-08 22:45 I came back home, hear the acoustic alarm and start investigating<br>
+2011-01-08 23:25 Attempt to start the machine into recovery system as there was no chance to revive it<br>
+2011-01-08 23:45 Created ticket at ISP as recovery system apparently does not start<br>
+2011-01-09 03:57 ISP responds to ticket that the recovery system will be available soon<br>
+2011-01-09 10:03 Acoustic alarm tells me that the machine right now is available in recovery mode (wow)<br>
+2011-01-09 10:40 Harddrive only does 39 MB/s so low level check will take a while.<br>
+2011-01-09 11:22 fsck -f running<br>
+2011-01-09 11:49 fsck ready<br>
+2011-01-09 11:51 Machine rebooted and up again<br>
+2011-01-09 11:55 Router up again
+
+[2010-12-24] rapidshare.i2p blocked, just to be sure
+<br>
+According to their terms and service rapidshare.i2p allows to download files which are illegal.
+I am not opposed to that idea because history shows that it's higly subjective what's currently considered "illegal".
+However being a prototype German I want to respect German Laws as well as The German Principle.
+Therefor I decided, on myself, not to expose this eepsite to the Internet Public.
+<br>
+Nevertheless, I wish you a merry Xmas!
+
+[2010-12-02] The router was disconnected from the network for 3 days.
+<br>
+My Router1 was disconnected from the network on 2010-11-29 10:00 MESZ
+due to money not reaching the ISP in time.  This was my fault, sorry.
+Due to this this proxy was not able to reach any eepsite.
+I was able to reactivate the machine on 2010-12-02 15:00 MESZ.
+
+[2010-11-12] InProxy moved datacenter
+<br>
+This server was moved physically to another datacenter.
+This action was planned, but I forgot to give prior notice.
+<br>
+After the move the machine came down again unexpectedly,
+so the downtime was est. 11 hrs instead of less than 8 hrs.
+Hope it now runs stable again, if not the ISP must repair it.
+
+[2010-10-30] Router server's PSU replaced
+<br>
+The router's server had a crash because of the PSU failing.
+It was replaced.  The server will be back online, soon.
+<br>
+Unexpected downtime: est. 4:40 hrs until 08:10 MESZ today
+
+[2010-10-30] Router was failing (again)
+<br>
+For unknown reason (I do not think that it has to do with the
+recent move of the router server) the router was failing.  It
+lost all connections to the network and told me that I have to
+check NAT/Firewall.  However the TCP port of the machine was
+open and easily reachable from outside (I checked with socat).
+<br>
+Actions taken: Deleted netDb and restarted the router.
+<br>
+Unexpected downtime: est. 8 hrs until 0:30 MESZ today.
+
+[2010-10-29] Router server successfully moved.
+<br>
+The ISP moved the router server physically to another location.
+There was some little trouble afterwards, but the planned
+schedule was kept.
+<br>
+<tt>
+Planned_: 2010-10-28 21:00 UTC - 2010-10-29 07:00 UTC
+<br>
+Downtime: 2010-10-28 22:10 UTC - 2010-10-29 06:30 UTC
+</tt>
+<br>
+BTW: Such downtimes are announced on the downtime page.
+(More.. -&gt; Downtime)

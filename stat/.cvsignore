@@ -1,0 +1,14 @@
+out
+hosts
+*.sqlite
+*.sqlite-journal
+graph-*.gif
+graph.inc
+*.rrd
+*.old
+deadloop.log
+stat.log
+proc-deadloop.last
+proc-hourly.last
+rrd.sh.stamp
+minute.lock

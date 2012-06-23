@@ -1,0 +1,980 @@
+<!--Contact-->
+
+<a name="faq"></a>
+<b>Q: I want to contact you (anonymously) / I have a FAQ which is not answered here / I have a feature request</b>
+<p>
+A: Please send your question/report to me using my pager under <a href="http://hydra.geht.net/pager.php">http://hydra.geht.net/pager.php</a>.
+From within I2P you can reach it as <a href="http://www.tino.i2p/pager.php">http://www.tino.i2p/pager.php</a> as well.
+Do this as follows:
+<ul>
+<li> First check, that you are a "living being" and press <b>Start &gt;&gt;</b>
+<li> You can leave the eMail address empty if you do not want any reply from me.  In this case I cannot ask back for more details.
+<li> In the text area <b>state your question</b> and give me a hint to what you are referring to
+<li> Press <b>Preview &gt;&gt;</b> and look if everything looks OK
+<li> Press <b>Send message &gt;&gt;</b>.  If no error is shown your message will reach me as fast as possible.
+</ul>
+<p>
+Don't forget to make this message important if it is really important (important for me, like there is a legal threat against me).
+<br>
+You can send me messages in English and German language.
+Messages in other languages I cannot read and therefor cannot answer,
+sorry.
+<br>
+<b>Anonymous messages are welcome.</b>  That's what the pager is for.  So post a message and leave away your name or eMail-address if you like!
+
+<!--General-->
+
+<a name="i2p"></a>
+<b>Q: What is I2P?</b>
+<p>
+A:
+I2P is an anonymous network within the Internet which tries to protect the anonymity of the I2P users.
+If you want to know more:
+<ul>
+<li> <a href="http://en.wikipedia.org/wiki/I2P">http://en.wikipedia.org/wiki/I2P</a> Wikipedia article about I2P </li>
+<li> <a href="http://www.i2p2.de/">http://www.i2p2.de/</a> The official I2P homepage </li>
+</ul>
+Here is an incomplete list of other types of anonymous networks which try to ensure that people can stay anonymous even against very powerful adversaries (like states):
+<ul>
+<li> <a href="http://www.freenetproject.org/">Freenet</a>
+<li> <a href="http://www.torproject.org/">TOR</a>
+</ul>
+<p>
+Please do not confuse anonymous networks with anonymity proxy services, even that TOR provides one.
+And please note that this here is not I2P.  It is only a proxy to a part of I2P.
+
+<a name="inproxy"></a>
+<b>Q: What is this place here?</b>
+<p>
+A: This is the web frontend of one of the public proxies into the I2P network.  Or a little more explained:
+<ul>
+<li> This proxy tries to locate all websites in I2P (called eepsites) </li>
+<li> It lists all eepsites found on the "Status" page </li>
+<li> It offers direct links to most of the eepsites by mapping their names into proper Internet URLs </li>
+<li> If such a name is accessed the proxy fetches the data from the eepsite and forwards it to the browser </li>
+<li> This way search engines can index eepsites, too </li>
+<li> Sometimes things are not reachable in the I2P network.  So if you click on such a link in a search engine, it can be that you are landing here on the proxy instead, telling you, that the connection was impossible. </li>
+</ul>
+To stress it:
+<ul>
+<li> This here is only a simple gatway </li>
+<li> It is highly experimental, so it keeps a lot statistical data like the history of reachablilty of eepsites </li>
+<li> This gateway was done mostly for promoting I2P.  If I can make you addicted, you will install I2P, take part on the network.  The bigger the mass the better the anonymity. </li>
+<li> All the really interesting stuff this proxy has to offer comes from the eepsites.  Please note that I2P offers more than just eepsites (like the Internet offers more than just the WWW) </li>
+<li> This gateway has no control about what is on the eepsites.  It just forwards what's there, unchanged. </li>
+<li> Eepsites are anonymous.  This proxy is not. </li>
+<li> I2P users are anonymoous.  Users of this proxy are not. </li>
+<li> If your anonymity is important to you, consider <a href="/links.php">running I2P yourself</a> </li>
+</ul>
+
+<a name="others"></a>
+<b>Q: Are there other proxies into the I2P network?</b>
+<p>
+A: Yes, check the <a href="/links.php">links</a>, I call those I2PinProxies.  However this list may be incomplete.
+
+<a name="long"></a>
+<b>Q: This FAQ is quite long</b>
+<p>
+A: Yes.  But searching a single web page is more easy than do this with a bunch of pages.
+
+<a name="redundant"></a>
+<b>Q: This FAQ is a bit redundant</b>
+<p>
+A: Please forgive me, no time to reorganize.
+
+<!--Technical-->
+
+<a name="eepsites"></a>
+<b>Q: How can I add my eepsite to this proxy service?  Can you add my eepsite to your service?</b>
+<p>
+A: This is a fully automatic process.  I cannot and will not speed up this process, but perhaps you can complete the steps (noted below) more quickly.
+To find out if an eepsite is already known and which keys are used to access it, look into my hosts.txt:
+<ul>
+<li> <a href="http://tino.i2p/hosts.txt">"http://tino.i2p/hosts.txt</a> (I2P) </li>
+<li> <a href="http://tino.i2p.to/hosts.txt">"http://tino.i2p.to/hosts.txt</a> (Internet) </li>
+</ul>
+<p>
+If the eepsite is unknown yet we have to wait until the site becomes available in addresshelper.  Then the automated process picks up the new destination.  The destination will then be listed here after the next probe round, which takes a day or two.  This works as follows:
+<ul>
+<li> First create your eepsite as usual. </li>
+<li> Give your eepsite an unique name.  You cannot overwrite or re-use names which were taken in history, even that the names are likely to be no more used in future ever.  You can try the <a href="/status.php?code=">'all' list of this proxy</a> to see which names are already taken.  However this list is not guaranteed to be complete.  </li>
+<li> Make sure you can access your eepsite like you can access other eepsites.  If you can access other eepsites (like www.i2p) and your eepsite as well through your router's eeproxy, probably others can reach your eepsite as well.  (It's not always that easy, however that's the normal case.) </li>
+<li> Then <b>register your new eepsite's name</b> (like <b>www.i2p</b>) in one of the supported services (see below). </li>
+<li> After the eepsite is registered, this proxy will automatically learn this new destination some weeks(!) later.  (Technically this is some days after the site becomes available in addresshelper.) </li>
+<li> If your eepsite then still is reachable it will be accessible by just adding .to to the name, so <b>www.i2p</b> becomes <b>www.i2p.to</b> (as long as I do not need to block your eepsite for one reason or another). <b>Note that this proxy is not suitable for high traffic sites.  It is mainly to allow search engines to peek into I2P, and to make others aware of I2P!</b> So if it works for your eepsite, nice and you are welcome.  If not, sorry to hear.  </li>
+<li> This proxy learns addresses through following services (so you must make sure, your eepsite is showing up there):
+ <ul>
+ <li> <a href="http://i2host.i2p">http://i2host.i2p/</a> - there is no way to register new hosts manually, it is distributing what it learns elsewhere. </li>
+ <li> <a href="http://stats.i2p/i2p/">http://stats.i2p/i2p/</a> - there is an 'add key' form to add your eepsite </li>
+ </ul>
+</li>
+<li> Note: You should register your eepsite using I2P and not using this proxy, therefor I do not provide non-I2P-URLs to these two services here.  Your eepsite is anonymous.  Your IP isn't.  So if you register your eepsite using my proxy I could possibly track your eepsite's name back to the IP you used while registering.  This is bad.  To protect your anonymity, start to learn not to trust anybody.  If you want to know more on this subject, perhaps read following (fictional) book: <a href="http://craphound.com/littlebrother/download/">Little Brother</a> by Cory Doctorow. </li>
+<li> Remember: It may take a week or two until your eepsite is distributed after it was registered.  And it may take some days until this proxy learns this distributed change.  Everything is fully automatic, there is no way to speed things up. </li>
+<li> And before you ask:  Sorry, I cannot help you setting up your eepsite or registering it. </li>
+</ul>
+
+<a name="ssl"></a>
+<b>Q: Can you support SSL for i2p.to?</b>
+<p>
+A: Technically speaking, this is impossible on IPv4 as long as TLS1.1 must be supported.  But there is help:
+<ul>
+<li> <a href="https://privacybox.de/i2p-proxy.de.html">PrivacyBox</a> has an SSL driven gateway to I2P
+<li> <a href="https://i2p.auth-o-mat.com/">Also my machine</a> allows to access I2P nearly the same way using SSL
+</ul>
+<p>
+However it is a little bit different than accessing EEPSITEs directly via HTTPS.  Please note:
+<ul>
+<li> There is no way to implement eepsite SSL support, as TLS1.1 (commonly called SSL) lacks a multi-domain-feature.
+     This is not a bug, it will vanish with IPv6 or the newer TLS1.2 (which is only 2 years old, my machine is much older).
+     TLS1.1 only supports one single certificate per IP, this means only one destination per IP, but there are many different destinations to support.
+<li> There are wildcard SSL certificates out there, but they are expensive.  And they only support one domain level in HTTPS.
+     For example, https://tino.i2p.to/ is supported but not https://inproxy.tino.i2p.to/ (this depends on the browser, IE does not like it).
+<li> My machine has very little resources.  So if it is overwhelmed by HTTPS traffic I must shutdown my HTTPS support for I2P here.
+<li> As my machine forwards all traffic, HTTPS does not hinder me (and possible eavesdroppers in my machine) to see all data unencrypted.
+<li> I have no way to make sure that my machine here isn't wiretapped, so I cannot give you any guarantees that HTTPS can improve anything.
+</ul>
+<p>
+Frankly speaking, you do not gain much profit from using HTTPS, except that somebody at your side must be a little bit more powerful to read your traffic.
+(Note that powerful adversaries like your employer can manipulate your browser such that they can decode all your HTTPS traffic.)
+<p>
+Some note about Firesheep: Firesheep steals Cookies from WLAN connections and similar.  I do not consider this a problem with I2P.
+It is very dangerous to use credentials over a proxy like mine if you cannot ultimately trust the person who operates the proxy.
+There is not a big difference in trusting me or the WLAN you are using.  A third party could be able to gain access to the data you send.
+Again to stess it: <b>This proxy is not thought to be used to access sensible data.</b>  If you need more trust or security, install I2P.
+
+<a name="protocols"></a>
+<b>Q: Can the inProxy provide access to xmpp(jabber) or other services?</b>
+<p>
+A: Sorry, no.  The destination must talk the HTTP protocol.  Please note that this question is very close to the SSL question.
+<ul>
+<li> This is because the name of the destination must be determined inband, it is taken from the HTTP Host:-Header.
+<li> Any protocol similar designed like HTTP should work, more or less, but other protocols which are not HTTP like definitively do not work.
+<li> Please note that this proxy shall not be a generalized gateway from Internet to I2P.  If you need that, consider installing I2P and go for it.
+<li> If you need more, consider renting a virtual server, install I2P on this and access I2P via that server.  If installed firewalled, I2P uses introducers and only needs very scarce resources.
+<li> An I2P-leaf-node can be run with 256 MB RAM, 500 MHz and 1 GB/month (if you know how to tweak it), but it runs fine with 512 MB RAM, 1 GHz and 100 GB/month.  Such vServers cost less than 9$/month.
+<li> It runs fine on a 200$ Linux laptop (512 MB RAM) attached to a firewalled DSL (I have it running!).  You can open a port on your firewall to offer you a VPN connection from outside using DynDNS or similar.
+</ul>
+<p>
+Does anybody know about a good image for a Linux appliance which comes with I2P in it?
+<ul>
+<li> Just start a VMWARE PLAYER and you are set up?
+<li> Note that currently OpenWRT devices have to few resources to run I2P.  This might change until 2015.
+</ul>
+
+<a name="b32"></a>
+<b>Q: Why can .b32.i2p addresses not be accessed through your proxy?</b>
+<p>
+A: Because this feature is new and I did not came around to implement it properly.
+<ul>
+<li> In future I plan to support this URL scheme, but for now it does break too much here to support it.
+<li> My idea is to completely get rid of the old naming scheme and replace it by the new hash feature.
+<li> This means for you, if you access "tino.i2p" this will be redirected to the hash, and this hash then will be accessed.
+</ul>
+<p>
+Why this is the proper way to do it:
+<ul>
+<li> For now the naming scheme of I2P is a local thing.  That is "tino.i2p" can point at one destination here and somewhere else at other sites.
+<li> Only the hashed destination (.b32.i2p) is unique in the respect, that it does not change regardless from where you access it.
+<li> So if you bookmark an URL with an eepsite name in it, it can lead anywhere, while with the full hash in it it denotes the endpoint.
+<li> For yourself, it is ok to map the destination in hosts.txt.  But for a public gateway like this inProxy, which might run distributed
+on several machines, it is better to have clean requests which can be served without consulting something like a hosts.txt.
+</ul>
+<p>
+On the long term this means:
+<ul>
+<li> I have to rewrite the complete probing engine such, that no more destination names are probed, but in contrast destination hashes.
+<li> Then the hashes are re-written to the meaningful name.
+<li> If there is no such rewrite, the hash (*.b32.i2p) is presented to you
+<li> And if you click on the name, this will be translated to the hash.
+<li> Also blocking will be done on the hash level, no more on the destination name.  Which is somewhat cleaner.
+</ul>
+<p>
+Also note, that this method can get rid of the need for addresshelper.
+All you need is some lookup service, which translates a name to the hash destination.
+Generally speaking:
+.b32.i2p destinations are good, but for some sad reason, I cannot support them now.
+
+<a name="cookies"></a>
+<b>Q: Why are logins not supported / Why are cookies not working correctly?</b>
+<p>
+A: Session Cookies which are non-permanent do work for this proxy, so perhaps certain login features work as expected.
+But logins and permanent cookie support is missing from this inproxy, and this might lead to errors.
+<ul>
+<li> Technically speaking, if an eepsite wants to store a permanent cookie, you must add the domain path to the cookie.<br>
+Cookies are transported in the HTTP header and my inProxy <b>does not alter embedded Cookie information</b>,
+so it does not rewrite the domain path of the cookie.  However it must rewrite the Host:-header, such that the cookie
+path and the host name do not differ.  This is due to a lack of design in the cookie specification and beyond what
+this proxy was designed for.  Here is what happens:
+ <ul>
+ <li> Your browser accesses the website www.tino.i2p.to
+ <li> The proxy rewrites the Host: header to read www.tino.i2p and forwards the request into I2P
+ <li> My eepsite sees a request to www.tino.i2p
+ <li> If the eepsite wants to store a cookie this is done for domain .tino.i2p
+ <li> The cookie is sent to your browser.
+ <li> Your browser sees a cookie for .tino.i2p while accessing www.tino.i2p.to
+ <li> The browser has no way to see that .tino.i2p and www.tino.i2p.to belong together
+ <li> As altering information for different sites can be seen as security risk, cookies with the wrong path must be discarded
+ <li> Even if the cookie is stored it does not work, because of following:
+ <li> Your browser now accesses another page from www.tino.i2p.to
+ <li> The browser looks in the cookie-jar if there are cookies for www.tino.i2p.to
+ <li> There are none.  There is a cookie for .tino.i2p but you are accessing .tino.i2p.to so from the broswer's perspective this is a completely different thing
+ <li> You could fix that if your software detects the original domain name (it's in the HTTP header X-Forwarded-Host:),
+      to see this header you can try <a href="http://test.tino.i2p.to/">http://test.tino.i2p.to</a>
+ <li> However this here is not an official service, so I recommend to not rely anything on it, as it might happen that it vanishes without prior notice
+      (so much to georgewell.i2p.to, yes, it's an eepsite not reachable from within I2P)
+ </ul>
+<li> <b>This lack of cookie support is by design and will never be fixed!</b>  If you wonder why, read on.
+<li> The inProxy was not designed to allow to do complex things from non-I2P to I2P.  It was mainly designed for two things:
+ <ul>
+ <li> To promote I2P by enabling eepsites to be searched by search engines like Google.
+      This involves keeping track of eepsites such that they can be easiliy picked up by search engines - and humans, too.
+ <li> To allow to link documents which reside on an eepsite from Internet blogs etc., this mainly involves linking to text files (websites are HTML which is text).
+ <li> As a technology study of myself on how things work together on the long term.
+      Trust me, even after 4 years of operation it's still worth it.  Hence this Proxy still is Beta state.
+ </ul>
+ In particular this inProxy was not designed to explicitely support any of the following activities, as the resources of my machine are somewhat limited:
+ <ul>
+ <li> Login to eepsites of any sort
+ <li> Support transparent and failure free access to everything within I2P
+ <li> Support bigger downloads, download managers or fast access to picture archives
+ </ul>
+ If anything of this works, well, nice, but this was not the main goal to be reached with this proxy
+<li> Using my inProxy for Login purpose can be seen as a security risk
+ <ul>
+ <li> Don't get me wrong, I do not sniff the data transferred.  I do not even have the capacity to do so.
+ <li> However it's trivially easy to install a user/password sniffer, as seen with Firesheep on WLANs.
+      There is no need to install this on my server, as HTTP is involved (thus unencrypted) anybody (nearly) could bug my server outside without a way of me even knowing that.
+      There are several techniques possible, you do not need expensive hardware or router access for it, all you need is to be on the same LAN and be able to do ARP poisioning.
+      So it is enough to plug in a modern smartphone into the same switching infrastructure my server is attached to, you do not even need to modify the smartphone (suitable USB to ethernet bridges cost below 100$).
+ </ul>
+ Note that it is known that several TOR outproxies have password sniffers installed.  However TOR supports HTTPS which cannot be sniffed that easily.
+ Even that you have my word for it that I never do sniffing, such a statement never counts.  Read more about <a href="#trust">trust</a> below.
+<li> It's a nontrivial task to fix all possible sources of incompatibilies such a proxy has.
+     Fixing a problem even might hinder eepsites to support certain things.
+     So the proxy here is as transparent as possible and only does the most basic (read: absolutely needed) things, and not a bit more.
+     Hence this problem will never be fixed on my side - and I can spare me that effort, too, to repair what's not really broken.
+<li> So eepsite operators have all options to fix things if it really is needed - even that I recommend to not perfectly support non-I2P guests.
+<li> And users of this proxy will never see a perfect service of eepsites - which hopefully will make them to give I2P a try.
+<li> Here we have a classical win-win-win situation: Surfers, Eepsites, I2P.
+<li> Please note that some are not happy that their eepsite is exposed. This was why I implemented blocking historically.
+     Also you now can work around this, as currently all known inProxies define a common set of headers which distinguish forwarded requests from I2P internal requests.
+</ul>
+
+<!--Legal-->
+
+<a name="illegal"></a>
+<b>Q: I found illegal content on your pages.</b>
+<p>
+A: If you found an eepsite with illegal content (see verboten content below)
+please leave me a message on my pager (see above).
+<br>
+<b>State the eepsite name (URL) and a short remark why you think the content must be blocked.</b>
+<p>
+Notes:
+<ul>
+<li> These pages you found are eepsites and not "my pages".  This machine here is only a gateway to sites operated by other people.
+<li> Please note that I am planning to add a "report site" feature here to this inProxy when I find the time.
+<li> For now blocking a destination is a manual process and therefor may take some days.
+</ul>
+
+<a name="copyright"></a>
+<b>Q: I found something with copyright infringement on your pages.</b>
+<p>
+A: Please report it using my pager, see above.
+<p>
+Please note:
+<ul>
+<li> As it is a manual task blocking may take it's time (for example if I am on holidays).
+<li> Again, these are not my pages.  I only operate a public gateway between two public networks.
+This is much like a telecommunication hub, and you cannot make the carrier responsible for the faxes' content.
+<li> I cannot make sure the document which was blocked will not show up at another destination.
+This is because my inProxy has not the capacity to do site screening.
+Also according to my readings of German law, my server here is not allowed to censor based on content.
+<li> I cannot block URLs (this probably never will be implemented), I only can block complete eepsites.
+This is like ISPs who only block IPs and not URLs.
+<li> Blocking something on my I2PinProxy does not make the URL inaccessible.  It only blocks the
+content on my machine.  The content is still there, reachable via I2P, and there might be other
+inProxy system which allow to access I2P content from outside I2P.
+<li> So having me block a destination is like Don Quixote winning against a windmill.
+</ul>
+<p>
+Some additional words: As a software programmer I hate people violating copyright.
+Being in an anonymous network does not give anybody the right to ignore the rules.
+So if you are pirated, you have my sympathy, read: I will block it unconditionally, of course.
+Promised.
+
+<a name="fraudulent"></a>
+<b>Q: I found something awful / intimidating / fraudulent content on your pages.</b>
+<p>
+A: Again, these are not "my pages", these are eepsite.  If you think, the content on the eepsite breaks the law,
+either in Germany or in your country (like insults, terrorism, etc.),
+then please report it to me using my pager, see above.
+Please state (in short!) why you think this content must be blocked.
+<ul>
+<li> As long as I am not convinced that the content is bad, it is likely that I will not block it.
+<li> If the content is in some language which I cannot read (and the translators do not
+indicate anything wrong) the former applies.
+<li> When I think the content is unlawful, I will block it.
+</ul>
+
+<a name="childs"></a>
+<b>Q: I found unprotected content which is not suitable to children on your pages. (Content which is not unlawful in other respects.)</b>
+<p>
+A: I repeat, these are not "my pages".  If the content of an eepsite is bad for children
+and there is no protection to that content,
+such that childs can unknowingly and unexpedtedly stumble upon this content,
+and it looks like the eepsite owner is willing to accept that children are harmed by the content,
+then I will place a block.
+<b>This is not to obey some law, this is to protect innocent children.</b>
+However, please read on.
+<p>
+<ul>
+<li> In contrast to German lawers, I know that 99.9% of the children surfing the Internet
+are neither innocently nor unknowingly nor unexpectedly stumbling upon such content!
+<li> Most children know exactly what they are up to do and where to find such things.
+<li> Children are most times better prepared to those content than their parents,
+as they are actively discussing such things with their schoolmates.
+<li> Blocking those content on the inProxy level does not hide this content.
+It advertises such content to the children and therefor does by no means protect them
+from reaching this content.
+<li> Children do not have some "moral imperative" which hinders them to recognize the world
+(which is a very good thing)!  This especially is true when they reach puberty,
+which differs from case to case, some start at age 11, some are not even finished with 30.
+<li> Most children know how to (actively) work around 99% of protections which should keep
+children away.  They are better in this than most adults trying to reach this content regularily.
+If you have a problem accessing a porn site, perhaps ask your 13 year old son,
+he probably can ask one of his classmates who already has free access there for quite some time!
+<li> Hiding adult content from children who are willing to read this content is not protecting
+them, it's simply censorship, as all people (regardless of age) have the right to freely inform
+themself from any open information source, this is one basic law here in Germany.
+Blocking it on an inProxy level does not close the source, it only hinders free access to the
+source, which continues to stay open for access at any time (within I2P).
+Therefor I break the law by censoring free access to a free resource at my system.
+However I will do so for any good reason (as this here is my system), but I will refuse to do so if I cannot see why!
+<li> Asking me to block a destination due to children protective laws is like asking a
+telephone carrier to block certain numbers in case a child calls there.
+If a telco does this in Germany, it is simply illegal.  I am not a telco, though,
+and I dislike my systems to transport certain smut, however it is my solely decision to place a block.
+Therefor if I cannot understand why some content shall harm others directly, I keep it open.
+<li> Also I am pretty sure that the postmodern laws against(!) children's basic rights (aka. protective
+legislation) are breaking fundamental laws of children and therefor are nothing else than wrong in this respect.
+Bits and bytes (in this form) do not harm children, usually!  (Parents who let their children run into this
+unprepared are responsible for possible harm!)
+<li> Why do I know this?  Because I once was a child.  I know what I did.  I had good parents.
+And I know my rights I had as child now, which I would have had if my parents wouldn't have given them to me anyway.
+<li> So parents are responsible for introducing their children into the Internet.  And parents are responsible
+to allow their children to make up their own mind and do their own discoveries.
+If they do not do, they are bad parents.  Period.
+</ul>
+<p>
+Please do not understand me wrong:
+<ul>
+<li> I do not say that parents shall allow their children to smoke, drink alcohol or let see the porn channel on pay TV.
+(Please note that I do not own any TV, when I gave it up my life improved!)
+<li> However it's not the primary responsibility of the porn channel to protect the minors,
+it's the responsibility of the parents to do so!
+<li> Enforcing the porn channel to block their program to children is simply governmental enforced censorship.
+So I cannot blame any eepsite which does not have a hard protection against children if there is adult
+material in it.
+<li> While I think that it is ok to enforce commercial adult/erotica sites to have some properly working
+age verification system, I simply do not think it's the task of some proxy service to control or
+enforce any aspect of this on free eepsites, as it neither stops this content nor hinders children accessing it.
+It moreover promotes such content, as it becomes "verboten content" then, which attracts the interest of children.
+<li> I think, if we present it to the children as ordinary normal content they will look at it and
+then start to look for other things they are really interested in.  (Like: "Well, yes, I once saw the Eiffelturm.
+Yes, it's big, and adults love it.  I really do not understand, why.  However there was a french boy,
+and we both played in the fountain nearby.  I got wet, my parents were not amused!"  See?)
+<li> If there is a problem that most parents do not care or are unable to educate their children properly,
+this is not a problem which can be solved technically by enforcing some "child protection act" on
+adult sites or such, this is a fundamental social problem which only can be corrected on social level.
+And this means, doing it by law-enforment by prohibiting things is the fundamental wrong way!
+<li> If you want parents to do their job and prepare their children for life, then it is the obligation of the
+state to help those parents to do so!  The state then must help those parents to not need 3 jobs in parallel
+for both parents each, just to feed their children.  The state must not allow that high (monetary) barriers
+are placed around the best education, such that parents, who cannot afford the time or material needed
+to take part of the Internet cannot help their children in this respect.
+If a state does it wrong this way, it is a bad state, not worth the children who live in it.
+<li> Such states do not have the rights to further restrict what children may see or not.
+As doing so is transforming a society in prison for children.
+<li> Help our children to evolve to human beings!  Do not guard them against things we think they
+may harm.  Only protect them against things, which really do harm for sure.  And this starts by not abusing children,
+neither by dictating them what they must do, by punishing them (not even mentally), or even worse.
+If your child does something wrong, do not prohibit this specially, explain her or him why it is wrong and
+show them, how to do it a better way.  If you do this reasonably, the child will follow.  As you are the parent.
+<li> If children do not follow their parents, it is the solely parents' fault.  Children are children!
+</ul>
+<p>
+BTW: I have a minor son.  And therefor I know it is my task to protect him from Internet odds.
+Because I do this I know the law is corrupt, as it does more harm than it can help me to do so.
+In fact, the law makes things worse, as I have less time to educate my son properly
+because of I have to follow such very stupid laws, like enforcing things which cannot be enforced,
+or explaining things (like this here) which really do not need to be explained in any
+free and reasonable society.  (However it must be explained, because there is more than a tendency
+for our civilization to become self-righteous, over-protective and mentally unfree.)
+<p>
+So if I block adult content, I think of my son.  I consider, whether there is the possibility that he is harmed by this content.
+And if I can answer his question when he ever ever asks me
+<a href="http://freenetproject.org/">why I assisted in taking away the freedeom from the Internet</a>
+by placing blocks in this inProxy.  Please keep this in mind when asking me to block content, you think is not suitable for children.
+
+<a name="cp"></a>
+<b>Q: How is child porn (CP) treated in Germany?</b>
+<p>
+Please note that IANAL, so what you read here is my personal interpretation:
+<ul>
+<li> German law forbids to even try to look for CP.  So it is a criminal act if somebody does a site
+screening to detect if a site contains CP.  Therefor if you report an eepsite to contain CP,
+I am not allowed to look at that eepsite (if I would even try to do I would break the law).
+<li> If you think this makes it far too easy to have me block something irregularily
+(as if you say it's CP I have no way to refuse the blocking request usually),
+you are right!
+Please contact the German government and try to convince them to make laws which make more sense.
+However even if a law is nuts (however it is important do outlaw CP), you must obey to it, and I will do so as good as I can!
+<li> Finding out that some site does NOT contain CP is prohibited by law here as well, for the same reason.
+Looking for the absence of CP technically does not differ from looking for CP,
+and the lawyers here are not so stupid to allow you to do something which is verboten if you just pretend to do the opposite.
+So when it comes to CP, only the authorities are allowed to verify such an issue, and nobody else!
+Please do not laugh, as this is quite serious.
+<li> Note that the only thing allowed (perhaps) would be to delete CP from my systems if it is reported to me
+or I stumple upon it.  However the eepsites are not my systems and no CP is stored on any of my systems,
+this inProxy only accesses the eepsites and sends the result to you.
+So even retrieving any third party URL which is reported CP (most eepsites are third party) simply is illegal here.
+<li> So if you happen to stumble over things like CP, please report this to the authorities, too!
+As I am not allowed to verify when CP is reported to me, I hardly cannot report this myself.
+If so, what shall I say?  "Hey, some anonymous source told me that some anonymous resource has something,
+which is reported to be CP like.  And btw. you can no more access it, as it now already blocked anyway."  See?
+</ul>
+
+<a name="verboten"></a>
+<b>Q: Which content is verboten in Germany?</b>
+<p>
+I really do not know everything, as according to the FUD from Microsoft,
+anything not approved by Bill Gates shall be illegal.
+Well, it's not all that bad in Germany, so here is, what I know of which is strictly illegal:
+<ul>
+<li> As noted above: Child Porn, of course.
+<li> Sodomy (sex with animals)
+<li> Pornography, if it is not protected by a properly implemented age verification system.
+(What a properly implemented age verification system is and which picture is pornographic or not is decided on a per case basis.)
+<li> Nazi lies (like denying the Holocaust)
+<li> Insults or harassment when combined with lies (lying is not covered by free speech.  However you *are* allowed to tell the truth, even if this insults others).
+</ul>
+
+<!--Policy-->
+
+<a name="block"></a>
+<b>Q: Why do you block?  Why don't you enable my eepsite?</b>
+<p>
+A: Here are some clarifications about blocking and stuff.
+<ul>
+<li> <b>Initially (by default) all (new) eepsites are reachable through this proxy.</b> And I won't change this behavior ever. </li>
+<li> <b>Automated destination protection blocks:</b>  Not yet implemented.  The idea is to protect eepsites from too much traffic through this proxy.  This will be future works. </li>
+<li> Automated client blocks:  These are only for the client side, that is requests from Internet into I2P.  These type of blocks are fully automated and of temporary nature.
+<ul>
+<li> <b>Soft client blocks:</b> These redirect requests to the blocking page and tell you that your request rate is too high. </li>
+<li> <b>Hard client blocks</b> on the IP layer: For those who do not listen to the redirect, this proxy blocks the route to a particular IP after 9000 requests or so.  In this case this proxy is unreachable by the IP in question for some hours.  Some IPs reached this limit in less than 10s due to 1000 requests per second.  Go figure. </li>
+</ul></li>
+<li> Manual destination blocks:  In this case the eepsite cannot be accessed through this proxy.
+Manually means, that I must manually add the destination to a blockling list.
+<ul>
+<li> <b>Eepsite blocking:</b>  The eepsite still is listed in this proxy but not reachable via this proxy.  If you access this inProxy from within I2P (via http://inproxy.tino.i2p/) the link still can be clicked.  This is the "usual" case for things like:
+<ul>
+<li> The eepsite does not want to be reachable from Internet.  Note that this is why I added this type of blocking to my proxy. </li>
+<li> The contents is too awful to be freely seen in Internet.  You can read it as "conent we definitively do not want to see on I2P".  This is the most frequent case. </li>
+<li> A third party complained about the contents of the eepsite.  Perhaps because of copyright violation.  This is a frequent case, too. </li>
+<li> If an eepsite advertises that it allows hosting of illegal content, even if the contents served will be legal in some country. </li>
+</ul></li>
+<li> <b>Censoring:</b>  This is like manual blocking, but the eepsite will no more be listed in my inProxy, too.  The number of hidden eepsites are given below the listing as "XXX destination(s) are not shown/censored".  This is the exceptional case for things like:
+<ul>
+<li> Childporn / Pedo / "Child Lover" sites.  It is my inProxy, I am a father, I am just not able to tolerate that.  If you are affected then you might see that as my fault, however it's a fault which probably never will be corrected, I hope. </li>
+<li> Sites which must be blocked by legal reasons like court orders requiring delisting. </li>
+</ul></li>
+</ul></li>
+</ul>
+<p>
+Notes and clarifications:
+<ul>
+<li> I don't do screening of eepsites, but I will add blocks when I become aware of the needs of such a block.  Becoming aware includes stumbling upon or being notified by others (see my pager above). </li>
+<li> This here is a proxy service, so it is infrastructure like a router.  However this is not part of the official I2P infrastructure and provided from a human for all other "beings" (read: extraterrestial or non-living beings would be welcome here as well).  The law says that it is not my responsibility to implement blocking/censoring.  German law even tells me the opposite, that nobody is allowed to censor.  However as the solely provider of this service I reserve me the right to block eepsites if they make me vomit, as without this would keep me from using my own service.  Also note that feelings change over time and my decision making is intuitively done without long pondering.  (You may see me as an impulse blocker.) </li>
+<li> I usually will not comment on why something was blocked or publish details.  So changes to blocks are concealed and abrupt.  And I usually will never look into a blocked eepsite again, so I usually will not become aware of changes there which allows me to unblock an eepsite. </li>
+<li> If you think a block is in error, you can contact me.  But usually this just is a waste of time on both sides, you and me. </li>
+</ul>
+
+<a name="censor"></a>
+<b>Q: Why do you censor?  What does "XXX destination(s) not shown/censored" mean?</b>
+<p>
+A: Well, yes, I call it censoring, because basically it is similar to that.  I like to use clear words which express the real thing.
+However I dislike to do things in the dark, that is why this inProxy tells you the fact something is hidden from public.
+<ul>
+<li> Censoring means, that certain known (and probably reachable) destinations are hidden from your view.
+<li> There is no way to get a list of censored destinations and I will not tell.
+<li> Censored destinations are still tracked, else you would not see the counters.
+<li> Because censored destinations are still tracked they still have a history page.
+<li> So if you know a destination's name you still can find out if this proxy censors this particular destination.  (You have to find out yourself how this is done.)
+</ul>
+<p>
+Please understand, that there are things I do not want to promote.  This is a purely personal thing for now.
+<ul>
+<li> I do not want to censor, however I use my proxy often to click to other destinations.
+<li> Sometimes this way I encounter destinations I never ever want to see again in my life.
+<li> Note that I am very tolerant, but there are things I just cannot and will never be able to tolerate.  Things which hurt me and others like a being hit by a bus at full speed.
+<li> As this happened I now implemented censoring, such that I can hide it in the (my) inProxy in future.
+<li> Note that I will not abuse this new feature to censor things I do not want, this is just limited to the really awful, illegal and horrible things.
+<li> If you find out one of the censored destination(s), you will immediately understand why I censored it.
+<li> Note that "normal verboten stuff" only is blocked here, such that it shows up in the list but it cannot be accessed from outside I2P over this inProxy.
+</ul>
+<p>
+Notes:
+<ul>
+<li> The implementation of this censoring feature currently is a big mess, so I have to keep the number of sites censored to the bare minimum.
+<li> I am human, so I might err.  If you think the censoring of a particular destination is wrong, you can contact me and discuss it.  You will need some really good arguments.
+<li> It is possible to revoke the censoring.  In this case the entry shows up again immediately with all history data intact.
+<li> Please keep in mind that I am <b>not</b> screening eepsites for possible censoring!  I am not an eepsite police nor do I want to be one.  Also the content of eepsites might change over the years.  So it is likely that I am not aware of it.  If you want to report something to me, you can use my pager (see above), it accepts anonymous messages.  Thanks.
+</ul>
+
+<a name="accelerators"></a>
+<b>Q: Why do you block me when I use a download accelerator?  Why am I blocked?</b>
+<p>
+A: I do not block you.  The default settings of most download accelerators are a braindead.
+By using them you are unfriendly because you are stealing more bandwidth which belong to others.
+This braindead technology perhaps can help to download braindead content provided by braindead people,
+but when it comes to I2P these "accelerators" become extremely harmful.
+<p>
+My system here has limited capacity.  It can survive 1 or 2 such braindead accelerators, but if 5
+people start to use them with the default settings (or what they think are "improved" settings)
+this is like a DDoS-Attack seen here, as this accelerators then eat up all possible connections
+and there is nothing left for others.
+<p>
+Therefor my system blocks you if your resource consumption becomes too high.  In stress situations
+the default setting of many browsers (more than 2 parallel connects) might trigger this blocking
+already.  (In extreme stress situations, my machine will already block you after your first request.)
+<p>
+This blocking is a fully automatic defense system to allow others to be not harmed by those which
+access the web with braindead settings.  If you use a download accelerator and you do not configure
+it to friendly settings (this is: No more than 1 request in parallel, retry wait period of 1 minute)
+to back off from heavily loaded systems, this will certainly block you very quickly.
+<p>
+This blocking now is sustained as long as the wrong behavior is seen.  It even might "burn" your
+IP, currently there is no limit (which can be considered a bug), so IPs might get blocked for years.
+(Before if was a little bit random, now the blocking is fixed to be more predictable.)
+<p>
+You can see how long you are blocked if you try to access I2P over this proxy.
+DO NOT RELOAD THE PAGE, to stay informed, AS THIS MIGHT RAISE YOUR COUNT.
+Stay calm and wait the given time.  And wait 15 minutes more or so.  Note that it depends on your
+IP stack and your ISP how long my system sees you.  If your ISP has a transparent proxy this might
+improve your situation or even hinder you, it depends.
+<p>
+Note that you are not treated differently from others like robots or crawlers.  However crawlers
+usually are very well designed, only do 1 request in seconds and have a well behaving IP stack.
+This is honored by my system here because it then is unlikely that these are blocked.
+<p>
+Windows IP stacks are known to be extremely "dirty", so they often leave half open connections
+to other systems.  This is penalized here, as this can quickly raise your blocking count to hours.
+I cannot help for this, except that it is your fault to use such unfriendly systems to surf the web.
+So there is nothing wrong at my side here.  If you are blocked, there is something at your side.
+
+<a name="freenet"></a>
+<b>Q: Why are you blocking freenet URLs?</b>
+<p>
+A: Because I dislike to wake up with a S.W.A.T.'s gun in my nose and afterwards being thrown into jail for the rest of my life.
+For more information, see <a href="#verboten">Which content is verboten in Germany?</a>.
+<ul>
+<li> In Freenet some very offending contents can be found easily.
+<li> Porn sites usually have a simple protection against children entering them, such that children (lying about their age BTW) are usually prepared of what follows.
+<li> My inProxy has no such protection against deep linking into similar Freenet content, such that innocent people easily can stumble upon it, perhaps by clicking on a Google result.
+<li> Also in Freenet there is content which is verboten in Germany.  It can be argued if I am allowed to proxy that content or not.
+However, I do not want anyway, that verboten content competes with legal content for the scarce resources of my inProxy.
+<li> Also I hate verboten content and dislike my systems to be used to transfer smut like this.
+</ul>
+So best is to block it in advance.  Just to be sure.
+
+<a name="torrenttrackers"></a>
+<b>Q: Why are you blocking some I2P BitTorrent trackers?</b>
+<p>
+A: This is a big misunderstanding.  This proxy here is to promote I2P contents, and not to help with data distribution.
+Non I2P-based BitTorrent clients are too numerous and impose too much load to this system here,
+such that this eats up <b>more than the available capacity</b> on this machine.
+<p>
+The currently available solution to keep this system here alive is to block all BitTorrent tracker traffic if there is a problem with it.
+This usually happens when the machine gets overloaded and my monitoring tells me about the fact that the machine is on fire.
+As I cannot ban URLs here, only destinations, this means that I have to block the complete destination.
+<p>
+This will be done until I have a better way to do it.
+Please note, if you are interested in BitTorrent and I2P, try installing I2P and start to use I2Psnark.
+
+<a name="trafficsites"></a>
+<b>Q: Why are you blocking my hightraffic site ****.i2p</b>
+<p>
+A: The resources on this machine are somewhat limited.
+Some destinations in I2P just consume too much connections in parallel.
+Sometimes these destinations have so many clients, that my automated blocking does not help.
+<p>
+In this case I will block the destination until I have a better solution.
+I am working on a way to even support destinations with a lot of connections,
+however I currently have no working solution to this.
+<p>
+If you see your site blocked, try my pager.  I will try my best to reenable your site, but this will take 48hrs to complete.
+However we must find another solution for this, as I cannot provide continuous service for such sites.
+
+<!-- Information -->
+
+<a name="defense1"></a>
+<b>Q: What is the first line of defense?</b>
+<p>
+<ul>
+<li> The first line of defense works on the IP level by nulling the route to an IP.
+<li> This defense kicks in if some IP exceeds the request rate of 1 request per second by 9000 requests.
+<li> Note that this defense very seldomly is needed.  Usually it only triggers if some IP ignores the second line of defense.
+</ul>
+
+<a name="defense2"></a>
+<b>Q: What is the second line of defense?</b>
+<p>
+<ul>
+<li> The second line of defense are temporary blocks on an per-IP-level.
+<li> This automatically tries to detect the people who consume most resources and block them.
+<li> It is a somewhat heuristical approach and often blocks people unneccessarily when there are too many requests.  But it is difficult to prevent that.
+<li> If you are blocked this way, you are forwarded to <a href="/block.php">a page</a> telling so.
+<li> However automated systems cannot read nor understand pages.  For them, and people who just do not want to listen, there is the first line of defense.
+<li> The problem with this here is, that it is often too slow to defend against some "attack vectors", such that all resources on this machine are too quickly eaten up .
+<li> In this case the situation gets very bad until the heuristics have successfully blocked everything.
+<li> It can take 15 to 30 minutes(!) until situation gets back to normal.  In this time many unneccessary blocks are placed.
+</ul>
+
+<a name="defense3"></a>
+<b>Q: What is the third line of defense?</b>
+<p>
+<ul>
+<li> Because of those problems I am working now on a third line of defense which works more quickly than the other two and even reduces the computational complexity of the second line of defense.
+<li> Currently the second line of defense runs for each request hitting the proxy.  This is because this was the most easy way to implement it.  However this consumes quite some computational power.  (Note that the tightest limitation is the limited numbers of parallel connections this proxy can serve.)
+<li> In future this second line of defense will be a continuously running script controlling the blocking state.  This improves situation in high load situation, because it uses constant resources.  However this increases the computational effort in normal times.
+<li> For each requests then there will be a third line of defense.  Each requests will be delayed a bit to queue up and count all parallel requests.  Note that this delay hopefully is not more than currently needed by the second line of defense.
+<li> If a certain threshold is reached on waiting requests, the requests are rejected due to overload.
+<li> This will free up precious resources very quickly, such that the situation can settle within 15 to 30 seconds (estimated) instead of 15 to 30 minutes.
+<li> Sadly this means, that you will see a <a href="/overload.php">overloaded page</a> more often.
+<li> Note that I can only work on this matter while an "attack" is going on, because only then I can see if the situation improves and if the scripts indeed work.
+<li> So this third line of defense might need some years to complete.
+</ul>
+
+<!-- Administrative -->
+
+<a name="contact"></a>
+<b>Q: Can I talk to you more directly?</b>
+<p>
+A: The fastest way is to call my mobile if you have the number.
+<ul>
+<li> The second fastest public way is to use my pager (see above).
+<li> Then comes eMail and my publicly given phone number (see imprint), which reaches me when I am at home.
+<li> If you do not summon me into IRC, I will not be there.
+<li> If you throw with lawyers at me this (usually) is the slowest way,
+as perhaps I must go and see my lawyer first to let him translate your request in words which I can understand.
+</ul>
+<p>
+Note that my native language is German.  (As an european I am allowed to use English to explain things, too.)
+
+<a name="unlist"></a>
+<b>Q: I've deleted my eepsite.  Please stop listing the name at inproxy.tino.i2p.</b>
+<p>
+A: Sorry, I thank you for your wish to cooperate with others and would like to do so, but I cannot do that.  Simply because there is no way to do it properly today.
+<ul>
+<li> My inProxy learns new destination completely automated.  The learning is done by the hosts.txt distribution methods of I2P. 
+<li> So I did not learn it from you, I learned it from other's hosts.txt entries.
+<li> Even if I would delete it in my inProxy and from my router's hosts.txt, there will come the day where the destination is re-learned.
+<li> However re-learning it possibly with another destination key can be considered creating a security flaw in the I2P design.  So if a name ever is learned, it shall stay where it is.
+<li> Perhaps see the next FAQ, why it may be harmful.  As long as there is no official update method, I cannot follow my own rules.
+<li> <strike>And because I do not want to censor, there is no way to suppress any entry (yet) such that it cannot be seen anymore.  Hopefully I never need to implement that.</strike>
+Even that censoring now is implemented on a proxy level, this only is for destinations <b>I do not want to see again, ever</b>.
+A site which became unreachable cannot contain such things.
+Also this censoring feature is quite messy for now (read: badly implemented) so I need to keep the censored destinations to the bare minimum.
+<li> It will take some days, then the name will be listed under 504 as all those zillion others.
+</ul>
+And BTW when the I2P hosts.txt distribution methods start to fail, I could implement my own:<br>
+The probing code could try to access http://eepsite.i2p/hosts.txt and stuff all found hosts.txt keys into http://tino.i2p/hosts.txt<br>
+However there are others today who exactly do this, which is important, as I don't want my inProxy to play an important role in I2P, just in case it must vanish.
+
+<a name="destination"></a>
+<b>Q: I've re-created my old eepsite under a new destination.  Please update inproxy.tino.i2p so that it has the new destination.</b>
+<p>
+A: Sorry, it's not my task to do so.  There seems to be some misunderstanding how name resolving in I2P and my inProxy works:
+<ul>
+<li> My inProxy operates on names, not destinations, so I do not need to update it.  My inProxy only learns new names (not: destinations) from my router's address book.  The names are resolved as usual using the I2P router.
+<li> I have two routers, each of them has it's own hosts.txt file.  Both are learning new destinations from each other.  One also learns from i2phost.i2p.
+<li> This does not differ from how any other I2P router works.  Changing my local hosts.txt files will only make my name resolution to differ from all other name resolutions, as even other routers which learned the wrong destination from my hosts.txt file already will stay with the old address.
+<li> To replace any destination within I2P the only way to do it is to alter <b>all hosts.txt of each individual router</b> found in I2P.  Good luck with this task, as I think other people will refuse such request like I do.
+<li> If you miss one single router, it may be that your old information laters spreads to other routers again, if they happen to learn from this router which still has the "wrong" destination.
+<li> Currently, I2P lacks a way to update an old destination network wide.  If such a method would be implemented, I will support it, so my routers then would get updated with the changed information, too.
+<li> For now I think what you want simply is impossible.  Doing it manually is not the way to go for an automated system like mine.  If I ever would start to do it manually, there will come times where I will be overwhelmed with requests to change destinations.  However it's not my part to decide, which destinations points where.  It's only my part to decide how my routers learn such information.
+</ul>
+<p>
+Note that I posted a request to <a href="http://zzz.i2p/topics/279">zzz.i2p</a>/<a href="http://zzz.i2p.to/topics/279">zzz.i2p.to</a> to be able to automate such updates using revocations.
+If - what I doubt - the I2P developers would change your destinations in their hosts.txt file <b>and</b> in i2phost.i2p, I <i>might</i> consider to delete the old destination from my hosts.txt file and let my routers re-learn the new one.
+<br>
+But I will not start to spread updated and unverified destinations myself.  Sorry, this is not my role in the I2P project.
+
+<a name="hosts"></a>
+<b>Q: Where can I find a full latest hosts.txt?</b>
+<p>
+My hosts.txt is at <a href="http://tino.i2p/hosts.txt">http://tino.i2p/hosts.txt</a> (I2P)
+or <a href="http://tino.i2p.to/hosts.txt">http://tino.i2p.to/hosts.txt</a> (Internet).
+However there is no guarantee that my list is complete nor is there any guarantee that it is current.
+<p>
+It's not that easy.  There might be a lot of different hosts.txt files out there in the I2P network.
+And some entries in one hosts.txt might even point to different eepsites than my hosts.txt.
+In I2P there is no single central source of truth, it is an anonymity network where you can share your opinion with other people.
+So all you see in my inProxy is just my opinion (or even more my router's opinion) of the I2P network.
+<br>
+You can share it, or not.  <b>If in doubt, throw a dice.</b>
+
+<!--Background-->
+
+<a name="why"></a>
+<b>Q: Why do you do this here?</b>
+<p>
+A: Because I can.  If those wouldn't do it, who can do it, who else would do it?
+<ul>
+<li> Anonymity is one of the most important things in life.  For example,
+the right to vote can only live if the voting is free, secret and equal.
+Anonymity makes you free, secret and equal.  So this is nothing new,
+it's a fundamental thing in a democratic country.  Upholding anonymity is one
+of the most basic democratic necessities which do exist in our universe.
+<li> I like to experiment with things which other people do not understand.
+<li> I2P is not widely known, but I think it's the most useful tool when
+it comes to anonymity.  Exposing I2P content into non-I2P networks therefor 
+is a matter of promotion.
+<li> When everything started, there was no search engine in I2P.  This
+gateway exposes eepsites to Google and others, which basically is a good thing!
+<li> My approach is a good thing for people who are copyright holders, as this way they
+can more easily find if their content is pirated in I2P.  (They probably only
+need to check sites which are blocked by me, the rest they hopefully can find
+via Google.)
+</ul>
+
+<a name="state"></a>
+<b>Q: What does this textbox on the top right ("deadloop" etc.) tell me?</b>
+<p>
+A: The proxy polls all Eepsites and connected parts and shows the status there.
+<ul>
+<li> Freenet: This shows the status of my fproxy.tino.i2p (Fred 0.5) server.
+<li> I2P latest: This shows me the latest (current) available version as reported by the Router.
+<li> I2P router1: My main machine running an I2P router.  The currently used router is marked bold.
+<li> I2P router2: My second machine running an I2P router (currently permanently down, a year has a little more than 31.5 million seconds)
+<li> Reachability: An estimate of reachable Eepsites.  The counts are number-reachable-destinations/number-reachability-changes-2d/number-reachability-changes-4w (multiple changes of a single destination is only counted once)
+<li> deadloop: this is an always running loop which probes all destinations which became dead recently.  So if a destination is seen unreachable and comes back, this is reported more quickly.  The counts are currentpos/totalcount
+<li> hourly: Each hour each destination is probed which was recently reachable.  When running the counts are currentpos/totalcount
+<li> probeloop: this tests all known destinations for reachability.  The counts  are currentpos/totalcount
+</ul>
+<p>
+If the hourly-probing takes longer than 1 hour multiple entries can show up.<br>
+The numbers in the "run" column are seconds.  Positive means "state change N seconds ago".  Negative means "next run in -N seconds".<br>
+Colors are OK=green, WARN=yellow, ERR=red.  If a count has a WARN label, this is a notifier for me that somethings wants manual fixes ;)
+
+<a name="optin"></a>
+<b>Q: Did you ever consider Opt-In?</b>
+<p>
+A: Yes, but I rejected it for several reasons.
+<ul>
+<li> First on, what Opt-In is: New destinations will be added in "blocked" state
+and are only opened when they are approved.
+<li> I2P is a growing network.  In a free world, and I believe that I am living
+in a free country, nothing is verboten until allowed, it's the opposite round.
+So everything is allowed unless forbidden.  In a good jurisdical system, and
+I believe Germany belongs to this, too, even the latter can be argued, as
+sometimes things which are verboten are allowed, as long as nobody is harmed.
+For example, it is verboten to hurt anybody, but you may hurt anybody to save his life!
+Therefor for a free and anonymous network, the right choice is to
+have everything open and allowed until blocked.
+<li> Blocking was not there from the beginning, but was added later on.
+<li> If you must opt-in, not many people would do so, as it is complex to do so
+(we are dealing with anonymity here, right?).  So only a few sites would become
+reachable via my inProxy.  I do not want to put a high effort into something
+which then has a low value by being something closed and self-righteous.
+<li> It would contradict the idea to promote I2P.  Think of somebody who found
+something in I2P and want to present this to somebody else, but the other one
+has no I2P installed.  As nearly everything is reachable this way, you can
+hand out the URL.  However if the eepsite owner has not opted-in this would not
+be possible.
+<li> Also this does not get rid of any burden of me in respect of destination
+blocking.  It just makes things less usable but does not help me any bit.
+<li> There is no requirement forcing me to do opt-in.  Well, some people
+expressed their concern because their eepsite suddenly became public.
+And to be honest, I implemented the blocking for these people,
+so for the anonymous people who wanted their eepsite not being exposed!
+However as eepsites are anonymous and public, I really can not see any
+problem with such eepsites becoming public outside I2P, too.
+<li> In Germany there is the law "Eine Zensur findet nicht statt."
+So having a way for a public gateway between two public networks is
+something like censorship.  For example like a carrier blocking
+faxes to certain numbers.  So I do not even know if it is rightful
+to do blocking, however having it the opposite round (block by default)
+looks me a little bit too wrong.
+</ul>
+
+<a name="optout"></a>
+<b>Q: Did you ever consider automated Opt-Out?</b>
+<p>
+A: Yes, and I am working on this issue.
+<ul>
+<li> First on, what is Opt-Out: Opt-out is the request to block destinations.
+Automated opt-out is, when no manual interaction is required to do this.
+<li> I have no good idea today how to implement it.  However it must be done,
+as it is intolerable to have just one person to decide such things.
+(It's intolerable for me, because I do not have the time to do so,
+and it is intolerable for the society, as one individual deciding is dictatorship.)
+<li> I2P is an ever growing network.  There will come the time where I cannot
+handle the load to block destinations manually.  So there must be some process
+to enable others to report destinations and the blocking then is done
+automatically.
+</ul>
+<p>
+My plans are as follows:
+<ul>
+<li> Implement a way to "report" a destination.  This shall be easy and
+convenient.  This probably will come soon to aid others (for me it still
+is a manual process then).
+<li> For site owners there shall be an easy way to express their will
+to have their site blocked.  This then can be implemented fully automated,
+with full interactive online help.  This will be added to the "report"
+function next.
+<li> When the automated blocking for site owners is implemented, there will
+be site configuration information available, which allows to manage
+blocking more easily for me.  For example I can see a history of
+state changes and the like.  Note that this information then will be
+publicly available as well.
+<li> Now the complicated task starts:  Some way to allow others to
+state comments to sites and therefor activate blocking.   This can be
+easily abused to trick my system to block everything, so this needs
+some good and clever countermeasures.
+<li> I am not completely sure how this will evolve, but it then will be
+work in progress.  For the first thing, it certainly will need my
+approval, however on the long term this must be a fully automated
+process.
+<li> Currently I think of something which is called "warranted blocking",
+which means, somebody who wants something blocked quickly (and is not
+the site owner) must hold some public warrant to enable the block.
+This warrant then is checked from while to while, and if the warrant
+no more hold true the block automatically is dropped.
+<li> There then can be guardians, who can express blocks this way,
+as well as copyright owners who want to suppress their works
+and public or state agencies, who enforce the law this way.
+All publicly checkable, such that any abuse can be quickly
+determined and punished by the community.
+<li> However this all is future works and only can develop
+naturally.  I hope, I2P (and all others) leave me the time
+to do so.
+</ul>
+<p>
+Please also note, that there will be the time coming where we have
+to coordinate all efforts.  It is futile to fight the same battle
+each time at different places.  So the blocking process must be some
+open process accessible and easy to implement by others, such that
+you (the copyright owner, etc.) do not have to fight this battle
+all over and again and again.
+<br>
+Really, I do not know where this leads, but there certainly is
+the need for a solution on a global basis, not only for I2P.
+But if it works for an anonymous, free and uncensored network
+like I2P, it can work everywhere.
+(This probably means, blocking is not enforced, but suggested to all people,
+who want to be <b>honest, nice and friendly.  I really think,
+this is the majority.  If I am wrong we do not need this all here anyway.</b>)
+
+<a name="pages"></a>
+<b>Q: Why are your pages are so square?  Why do your pages look so bad?</b>
+<p>
+A: Well, I am not a web designer, I am only a full-heart techie.
+<ul>
+<li> I am satisfied if information is presented in a clear and standard compliant way.
+<li> Text only pages load faster than those with graphics.  Therefor I abstained to use graphical effects if possible.
+<li> This pages shall be correctly displayed with IE4 and above.
+</ul>
+<p>
+Please note that this only applies to i2p.to and not to the eepsites.  Eepsites are not contrlled by me and may have any look.
+<p>
+Also if you think you can create a better design, send me the CSS please.  If you need certain CSS hooks, tell me, please, so I can add these to the pages.
+I then will provide a way to switch the CSS, and I will place your name on my inProxy if you like.
+<p>
+Please note that I will not keep contributed CSS current.  But I will allow to add your own CSS (like in csszengarden.com).
+
+<a name="real"></a>
+<b>Q: Are you real?</b>
+<p>
+A: Yes, or to be more elaborate:
+<ul>
+<li> I am an individual providing an inProxy gateway from WWW to I2P eepsites.
+<li> It's the German law that I have to reveal my identity, because I operate a WWW site.
+I knew this before I started this inProxy.  So you can be sure I am well aware of what I am doing.
+<li> Therefor you can get hold on me personally, for example by sending a court order, as I am a real individual.
+<li> And as I am doing this all here publicly you can be sure that I follow all the laws up to the point!
+<li> So all you can do is to bother me by sending some officials by misleading them to me.
+However do not expect that those officials who are sent by you abusively will not come back after you,
+as soon as I have explained to them that they were abused by you just to bother me.
+So at first I will get into some trouble, but I will recover from this, unlike you, who then will be in deep mess.
+</ul>
+
+<a name="balls"></a>
+<b>Q: You have balls!</b>
+<p>
+A: Not quite:
+<ul>
+<li> This is no FAQ, but I don't like this proposal, as there is nothing precarious in what I do.
+<li> First, of course I have balls, as I am male.  But this is a pure biological artifact.
+<li> I do not need to have balls, as I do not believe in that there is any threat in particular.
+I do live in Germany, which is a free and democratic country with (mostly) proper laws and a reliable and honest juridical system.
+If you are a standing democrat and you want to do something for your country, you cannot just sit back and look at others.
+You have to have to do something.  As I am not politically active, this here is my way to contribute.
+<li> For example: People driving at 250 km/h over the Autobahn need to have more balls than somebody who operates a public gateway like me.
+As driving fast is a real threat, for life and everything.  If you drive this fast, if there is only one second where you do something wrong,
+you are dead.  Now compare this to what can happen to me operating a public proxy.
+<li> Perhaps I sometimes have to argue to somebody.  Perhaps I get my computers confiscated for some time.
+Perhaps I have some trouble for a short period of time.
+But this leads me to the unique opportunity to teach others a story about citizenship.
+And I really think, this will be worth all the effort.
+Anyway, I don't think the risk I take is much higher than crossing a street.
+Some get hit by a bus, but that's the normal risk of life.  If you do not take this risk, you do not live.
+<li> Also remember:  Robin Hood knowingly broke the law.  In contrast, I uphold the law, how daring!
+</ul>
+
+<a name="trust"></a>
+<b>Q: Can I trust you?</b>
+<p>
+A: The safe bet is "no":
+<ul>
+<li> Do not trust anybody as long as you do not know the other personally.
+<li> Even if you know somebody personally, you only should trust from what this person is doing or because you are related to each other.
+<li> Even then you still shall not trust others fully and still keep back something for you in case you are betrayed.
+</ul>
+<p>
+The wise bet still is "no":
+<ul>
+<li> Believe in others.  Believe in that they fail.  Believe that others do irregular things from your perspective.
+<li> And protect yourself from the most fatal harm which can happen if your trust is broken.
+<li> In an anonymous network, the most fatal harm is if anonymity is broken.
+<li> From this perspective I cannot protect you if you use my inProxy.
+<li> So if you want to stay mostly anonymous, install I2P and abstain from my inProxy.
+<li> If you aware of the risk that I perhaps can trick you, you can happily use my services.
+<li> Please note that anybody providing service to you in Internet can trick you the same way.  So this is nothing special.
+</ul>
+<p>
+Please keep this all in mind when you access my freenet gateway <a href="http://fproxy.tino.i2p/">fproxy.tino.i2p</a>.
+However as you can only do this from within I2P this probably is not a big problem.
+
+<a name="tino"></a>
+<b>Q: Are you affiliated to I2P?</b>
+<p>
+A: Not really.
+<ul>
+<li> I want to stay as independent of I2P as possible, as anytime it may be the case that I have to shutdown everything at my site for some reason or another.
+<li> In such a case I would not like to see that I2P gets into some trouble or another just because my service faded away.
+<li> Perhaps somebody can be found who takes over then.  However I am not sure how to handle it if, for example, I am no more around to help.
+<li> Also please note, that I do not know anybody else of I2P personally and I want to keep it this way, as it is easy to get hold on me, as my name is on the web pages.
+So best is, I think, to separate I2P into an anonymous crowd, who develops I2P and provides core services,
+and a fully separated second public crowd, who provides some public frontend to I2P.
+The public crowd shall not run any core service, though, and AFAICS there still is a long way to go in this direction.
+</ul>
+<p>
+For the inProxy case the best thing would be if somebody else starts to create an alternative to my inProxy.
+Or to found a group who operates it.
+The solution here is able to scale, in that, it is easy to add other relays to it in a round robin fashion.
+I will happily dedicate the domain i2p.to into such a project, as well as the complete code base of this inProxy.
+However this group, in contrasts to the I2P team, must stay fully publicly.
+

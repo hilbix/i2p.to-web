@@ -1,0 +1,68 @@
+#!/bin/sh
+
+cd "`dirname "$0"`" || exit
+
+options="--silent"
+[ -n "$*" ] &&
+options="--verbose --progress-bar"
+
+renamer()
+{
+rtarg="$1"
+shift 1
+onr=.9
+for nr in .8 .7 .6 .5 .4 .3 .2 .1 .0 ""
+do
+	[ -f "$rtarg$nr" ] &&
+	mv -f "$rtarg$nr" "$rtarg$onr"
+	onr=$nr
+done
+}
+
+getter()
+{
+mkdir -p "`dirname "$1"`"
+gtarg="$1"
+shift 1
+curl	-q						\
+	$options					\
+	--user-agent	'inproxy.tino.i2p/0.2'		\
+	--referer	'http://i2p.tin0.de/mirror/'	\
+	--proxy		127.0.0.1:4444			\
+	--max-time	1200				\
+	--location					\
+	--fail						\
+	--remote-time					\
+	--dump-header	"$gtarg.head.tmp"		\
+	--output	"$gtarg.part"			\
+	"$@"						\
+	"http://$gtarg"
+}
+
+get()
+{
+if [ -f "$1.head" ]
+then
+	getter "$1" --time-cond "$1.part"
+else
+	getter "$1" --continue-at -
+fi
+
+ret="$?"
+echo "get $ret $1"
+
+case "$ret" in
+0)	;;
+*)	cmp -s "$1.part" "$1" || rm -f "$1.head"; return;;
+esac
+
+rm -f "$1.head"
+mv -f "$1.head.tmp" "$1.head"
+cmp -s "$1.part" "$1" && return
+renamer "$1"
+cp -f "$1.part" "$1"
+}
+
+get dev.i2p/i2p/i2pinstall.exe
+get dev.i2p/i2p/i2p.tar.bz2
+get dev.i2p/i2p/i2pupdate.zip

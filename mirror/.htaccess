@@ -1,0 +1,10 @@
+# $Header: /home/tino/CVSROOT/i2pinproxy/mirror/.htaccess,v 1.1 2008/08/28 09:47:15 tino Exp $
+#
+# $Log: .htaccess,v $
+# Revision 1.1  2008/08/28 09:47:15  tino
+# Added
+#
+
+Options +Indexes
+IndexOptions FancyIndexing
+#IndexIgnore

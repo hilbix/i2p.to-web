@@ -1,0 +1,1460 @@
+[2010-09-19] Connectivity was bad for 12 hours due to router failing for no apparent reason.
+<br>
+Here is what happened from my perspective:
+<ul>
+<li> At 10:55 CEST the router was restarted by the wrapper (JVM apperars hung).
+<li> In the log a CRIT showed up:
+<pre>Error processing job [Publish Local Router Info] on thread 1: null
+jvm 2    | java.util.ConcurrentModificationException
+jvm 2    |      at java.util.AbstractList$Itr.checkForComodification(AbstractList.java:372)
+jvm 2    |      at java.util.AbstractList$Itr.next(AbstractList.java:343)
+jvm 2    |      at net.i2p.router.transport.TransportManager.getAddresses(TransportManager.java:333)
+jvm 2    |      at net.i2p.router.transport.CommSystemFacadeImpl.createAddresses(CommSystemFacadeImpl.java:182)
+jvm 2    |      at net.i2p.router.networkdb.PublishLocalRouterInfoJob.runJob(PublishLocalRouterInfoJob.java:50)
+jvm 2    |      at net.i2p.router.JobQueueRunner.runCurrentJob(JobQueueRunner.java:145)
+jvm 2    |      at net.i2p.router.JobQueueRunner.run(JobQueueRunner.java:85)
+jvm 2    |      at java.lang.Thread.run(Thread.java:619)
+jvm 2    |      at net.i2p.util.I2PThread.run(I2PThread.java:77)
+</pre>
+<li> At 12:00 CEST reachability dropped to 70%, it took 1 hour to decline in the graph.
+<li> At 19:00 CEST reachability dropped to 10%, it took 3 hours to decline.
+<li> At 22:00 CEST reachability was nearly 0, so my monitoring alarmed me.
+<li> My manual checks did not reveal anything!
+     According to the router's console (note: I can only use lynx,
+     no no graphical frontend) no parameter was out of bounds.
+     The router seemd to be well integrated and participating.
+<li> Local connections (tino.i2p) worked without trouble
+     using the eeproxy.
+<li> However external connections did time out.
+<li> I deleted netDb and killed the router.
+<li> It restarted, reseeded and everything seems to be fine again.
+<li> I do not know if the reseed was needed or not, but I did it to save time.
+</ul>
+For me the router was failing for no visible reason at all.
+It looks like something went wrong at initialization time.
+Note that I suspect this is not the first time this problem shows up at my side.
+Perhaps there is some race condition in the startup code of the router?
+Perhaps the CRIT is the culprit?
+Saved version of <a href="graph-day-20100919.gif">Daily graph</a> and <a href="graph-six_hours-20100919.gif">last 6 hours</a>
+
+[2010-08-16] Updated to router version 0.8
+
+[2010-08-15] Had a downtime of est. 10 hrs.
+<br>
+Router machine was unavailable for 8 hours.
+There was no apparent cause for it.
+It became unresponsive but still ran.
+Perhaps network outage.
+<br>
+However I rebooted it into the recovery system
+while it was not reachable.
+This did not work directly, so I had to contact the ISP.
+<br>
+When recovery worked I did some manual checks like for filesystem.
+It revealed nothing in particular.
+After a kernel update to the latest one
+it came back up normally.
+<br>
+Afterwards the router did not want to make connections.
+Removing the netDb and restarting the router did the trick (aka. reseed).
+
+[2010-07-30] Unexpected weird downtime
+<br>
+Weird things going on?  I2P.to hijacked?
+<br>
+No.  Just two bugs.<br>
+First, the bridge to my I2P router came down from 5:35 UTC to 12:00 UTC.<br>
+Second, the apache config here does weird things in this case.<br>
+This second (longstanding) bug now has been fixed, in future a proper 503 is generated.
+<br>
+The logfile output of the bridge code hit the 2 GB barrier after some years.
+I was not even aware that my code has such a barrier (cannot deal with big
+files).  The logging does not contain any really interesting data, it just
+stores some output of stdout/stderr of the tools which do the bridge.
+<br>
+The fix was to remove the logfile and let cron restart the bridge.
+<br>
+The not-so-funny other side is, that the bridge is the proxy for Apache.
+If Apache detects that the proxy is down, it does not give you an error.
+For unknown reason, it skips it's config for this part and reverts
+to some other config.  This is auth-o-mat.com here, which then does an
+HTTPS to auth-o-mat.com.
+<br>
+No, this was not the right way to deal with such a problem, right.
+
+[2010-05-21] 0.7.13 does a pretty good job
+<br>
+Looking at the stats, it is a long time ago that a router runs that smoothly.
+For a -0 this is something to note as I do not remember any other release
+which gave us such a stable network.
+<br>
+There was a nearly similar stable network period a long time ago,
+but at that time my second router was there,
+and this one autoupdated to the latest dev version at that time.
+<br>
+Read: Things improve.  I dunno why, but leave the details to the devs.
+
+[2010-05-03] Updated to 0.7.13
+<br>
+As the update to 0.7.13 wrecked my configuration,
+this service here had a downtime of ca. 22hrs.
+Now the status etc. has to recover in the next 2 months ..
+<br>
+It is entirely my fault.  That's why there is supposed to
+be a backup router which keeps up the service when something breaks.
+However this here still is running with only one router,
+and if something happens to it (like when I err) we have a problem.
+
+[2010-05-03] 0.7.12 runs again.  But still experimenting.
+<br>
+http://forum.i2p2.de/viewtopic.php?p=24268
+<br>
+Bridging is enabled again.
+However as I am working on it, this gateway continues to be instable a little bit
+for the next hours.
+
+[2010-05-03] Router down until I get it back working.
+<br>
+For unknown reasons, I2P 0.7.12 does no more work, too, sigh.
+I have no idea why everything fails.
+Looks like I have to bring up the second router first to
+find out what went wrong with the primary one.
+This can take days.  Sorry.
+
+[2010-05-03] Router down, until I get back I2P 0.7.12
+<br>
+For unknown reasons, I2P 0.7.13 does not work at my side.<br>
+For unknown reasons, I2P 0.7.11 does not work at my side either.<br>
+For unknown reasons, I2P 0.7.12 is missing from the download archive.<br>
+And I do not dare to downgrade to I2P 0.7.10 again.<br>
+Therefore my system is down as I need to re-install 0.7.12 but cannot do so.
+
+[2010-03-18] Updated to 0.7.12
+<br>
+The current version does not run very stable at my side.
+I think it is a wrapper issue as it tears down the router each 30 minutes.
+However it may take some time until I have sorted this out.
+<p>
+Another thing:  Added an 504 error page, as there now is an eeproxy timeout after 1 minute.
+
+[2010-02-25] net6.i2p.to restored .. somehow.
+<br>
+If you still see that net6.i2p.to is blocked, flush the DNS-caches used and try again.
+Note that your ISP's DNS caches might keep wrong information for the next 48hrs.
+You have the wrong DNS entries if i2p.to and net6.i2p.to refer to the same IP.
+<br>
+Well, after being asked, I found some way to re-enable net6.i2p, somehow.
+However this "fix" is only of temporary nature as I cannot support this fix for long.
+<br>
+What I did is to pointer net6.i2p.to to some other host which then fulfills the request.
+This other host is my primary I2P router.
+So no intermediate connections, just directly handed over to Java by Apache.
+<br>
+This leaves us with no redundandy (however it is missing currently anyway)
+and it shifts load somewhere else (St. Floriani principle).
+<br>
+I am not sure how long this holds.  If I run into trouble again I have to stop this fix.
+Also note that the host will be shut down in june this year, so it will vanish if not solved by other means.
+(My replacement I2P router host cannot act as inProxy as well.)
+
+[2010-02-24] net6.i2p.to blocked.
+<br>
+I really do not know what's going on,
+but zillions of IPs are requesting data from net6.i2p.to.
+As this destination is unreachable currently it takes ages to fulfull the requests,
+therefor it floods my machine.
+<br>
+The only possible solution currently is to block this destination.  Sorry.
+<br>
+If my theory holds true, that somebody used it as a tracker for internet based torrents,
+then this destination will stay blocked until this type of traffic vanishes.
+If you want to serve torrents, please do this within I2P and
+abstain to use an i2p.to-subdomain in your .torrent.  Thanks.
+
+[2010-02-21] Machine completely overloaded.
+<br>
+There now is the point reached where the current setup of this machine here
+is no more able to serve all the parallel requests coming from all over the
+world.  Therefor I have to change the setup here.  This may lead to downtimes.
+<br>
+Until everything is running again properly we have to live with this situation.  Sorry.
+
+[2010-02-16] Update to router 0.7.11-0 complete disaster.
+<br>
+My router stopped working after I upgraded to 0.7.11-0.
+The effect was that the eeproxy did not work anymore,
+I was unable to retreive any eepsite (not even the local ones).
+Therefor I reverted back to 0.7.10-0 which works fine.
+
+[2010-02-16] privacybox.i2p.to can be faster reached as privacybox.de!
+<br>
+In the last time I see more and more requests going to privacybox.i2p.to
+coming from IPs from all over the world.  First I thought, possibly a
+bot network hit me, however it looks like legit traffic.
+<br>
+So what the people do is use privacybox.i2p.to to access the TOR gateway there!
+I really do not understand why they do not use privacybox.de directly.
+Because routing Internet - inProxy - I2P - privacybox.i2p - TOR is much more
+resource intensive (and slower) than going directly privacybox.de - TOR.
+And it becomes more and more unreliable the more my service here is overrun.
+<br>
+Please note that privacybox.de still can see the IP of your request, as my proxy
+adds an IP line into the HTTP headers send out to I2P (this is to allow EEPSITEs
+to protect against automated Internet bots etc.).  So you do not gain any
+additional privacy by routing this way.
+<br>
+The only right way is to install your own I2P router and access privacybox.i2p
+this way. (This proxy here is not to give you more anonymity, it is to promote
+I2P.)
+<br>
+Currently the situation is not desparate, however if this traffic gets problematic,
+I think about making privacybox.i2p.to a CNAME of privacybox.de.  However this
+needs help from the Privacybox people, as they do not allow HTTP traffic.
+
+[2010-02-04] bookpusher.i2p disabled.
+<br>
+I disabled bookpusher.i2p due to a massive DDoS attack like download
+pattern to this system coming from a continuous network block
+apparently from Singapore (perhaps a Proxy?).
+<br>
+Please note that Intelligent people will install I2P for faster download experience,
+instead of DDoSsing the network infrastructure with braindead settings, like trying
+to use 9 IPs in parallel doing more than 20 HTTP-Request/s each(!).
+<br>
+BTW, the block is permanent, mainly to protect I2P/bookpusher against such attacks.
+
+[2010-01-30] Router (was) down for unknown reason.
+<br>
+The machine running my I2P router became unresponsive.
+The hardware reboot feature did not work,
+so I informed the ISP.  The machine currently is up again.
+Downtime est. 8hrs.
+
+[2010-01-16] Living with a strange Java Zombie.
+<br>
+Strange from the weird sense, not the worry side.
+When I came home I was greeted by my monitoring which went
+berserk because of my Freenet node being down.
+In the kernel log there is a line telling me
+"Fixing recursive fault but reboot is needed!"
+(and shoot me if I knew what this means, except for the obvious).
+Apparently a page fault from the Freenet Java side produced
+an unkillable Java Zombie process which made it impossible
+for the automated termination script to tear down the broken
+Freenet service, therefor it was not restarted as well.
+Downtime of Freenet a little more than 2 hours.
+And now, there's a dead Java Zombie living in the box until
+I decide to reboot.
+
+[2010-01-06] Router is currently dead.
+<br>
+After installing a new Kernel the machine did not boot correctly.
+However I cannot fix it, as the recovery mode is unsuccessful, too.
+So there currently is no I2P router anymore for the inProxy, sorry.
+<br>
+Is up again.  Downtime was nearly 34h.
+
+[2009-11-16] Router updated to 0.7.7.18
+<br>
+The last few days had a lot of red spots in the statistics
+due to some bug in the devel version of the router.
+This was a classical Murphy:  I accidentally updated router1
+to 0.7.7 which (I had been warned by ZZZ!) would break my
+router survaillance scripts.  So I had to update to the current
+development version which allows my scripts to extract all those
+information again.  However exactly this version had some bug.
+Everything should be back to normal with 0.7.7.18 again.
+
+[2009-08-02] Degraded service in the next days.
+<br>
+Due to changes in my server infrastructure in the next
+days there will be only Router1 running until I manage
+to bring up another Router2.  For some reason I did not
+find the time to set everything up properly before the
+old machine went down.  Sorry, but this is a free
+service, so there are often quite more important things
+to do.
+
+[2009-07-17] Changed SSL tunnel receiver on Router2.
+<br>
+For some reason socat openssl-listen,fork starves after some
+rounds (it can be more than 100,000 which is quickly reached).  
+So I moved to socat2, which is experimental.  Let's see how
+this works out.  You can see this problem when my I2P-Proxy
+switches to Router1 permanently.  The listen loop there is
+based on my own tool socklinger, however Router2 is missing
+sslwrap, which is no more part of Debian today.  I do not
+know any usable replacement (Debian Lenny).
+
+[2009-07-01] proxy.i2p blocked as it's administrative.
+<br>
+ZZZ noted me (thanks) that proxy.i2p in future is used to
+access the router's core proxy to serve error pages etc.
+and therefor it's better to block it from the inProxy.
+Done so, master! ;)
+
+[2009-06-13] TOR service down
+<br>
+My machine which runs the TOR service has a defective harddrive
+and there is an error for the recoverysystem of the ISP,
+such that I cannot fix the problem over the weekend.
+Therefor I decided to retire the machine faster than planned.
+First all important services (like web and mail) will be
+migrated, then I have to find a new home for everything else.
+This rest is TOR, the TOR-Proxy etc. and some debugging thingies.
+Sorry for the delay.
+
+[2009-05-21] Machine rebooted, unknown why
+<br>
+Perhaps an evil adversary has virtualized my machine,
+or simply the kernel hung.  Whatever.  The machine rebooted,
+and I had to activate the web service again
+(it needs a password for the SSL certificate).
+Downtime 90 minutes or so.
+
+[2009-05-16] New I2P outproxy for 1 year, perhaps.
+<br>
+Some ISP behaved really stupid and insisted to loose money by not
+terminating my contract early.  So I am now left with a machine for
+1 year or so which I do no more need.  I will dedicate this machine
+to I2P as an outproxy, as soon as it is repaired.
+<br>
+The stupidness of the ISP is to insist that I have to fulfill the
+contract.  I will do and pay my 330 EUR.  However in return,
+this ISP has to do following:  Repair the machine (ca. 200 EUR),  provide
+power and traffic (ca. 150 EUR) and handle complaints due to the
+machine becoming an I2P outproxy (invaluable).  Plus taxes (my side
+is including taxes).
+<br>
+Mind your wishes as they may come true!  (Last word is not spoken,
+though, perhaps the technical service is more clever than the sales
+departement.)
+<br>
+Update: And so it was.  The technicians retired the machine instead
+of repairing it for nothing.  Well done.
+
+[2009-05-15] New blocking works.
+<br>
+The new blocking code which has a history (so does not block you based
+on the current situation, instead it is based on your resource usage
+seen previously) seems to work much better.
+<br>
+Now if you click on "More.. Blocked" you can see how long your IP is blocked,
+this is, you cannot access names below .i2p.to or the old name .i2p.tin0.de.
+If you see "cannot access DB", the database was currently updating,
+so just hit reload (the web code is of lowest priority to prevent DoS).
+Note that this page now is delayed 3 seconds now to tarpit braindead downloaders.
+<br>
+If you come from I2P you sometimes will see this count, too.
+This means, my router IP is currently in the blocking database, too.
+This will tell you that the inProxy is under high stress.
+But it does not affect you, as only re-entering I2P via inproxy.tino.i2p
+is blocked (you cannot do this with normal browsers anyway).
+<br>
+There still is the second line of defense, which will NULL IPs which
+have a request rate higher than 1 per second.  This kicks in when
+9000(sic!) exzess requests are seen.  Thanks to the new tarpitting
+this shall be needed more seldom now.
+<br>
+There is a new FAQ entry to explain that download accellerators
+now hinder you to download things over this I2PinProxy.
+
+[2009-05-13] Machine under stress.
+<br>
+I had to take down the proxy for several minutes to fix the blocking
+code, as several parallel downloaders brought this machine into
+high stress.  Now the blocking time (for the first blocking level)
+is increased dynamically by the number of connections seen, so to
+release a lock you have to stay calm for a while (this means: hours).
+<br>
+Before, the blocking was released as soon as no connections were
+seen at some point in time, which lifted the blocks apparently too early.
+<br>
+However this still is just a hack, as there is no good way to count
+how much stress is coming from which IP, as Apache does not give me
+any good method to do so.
+<br>
+Also I fear that the machine is no more capable to handle all the load of the
+I2PinProxy, so perhaps I have to move this service to another machine.
+However I currently have no good idea for a replacement.
+AFAICS I have to start experimenting with round robin DNS and
+offloading to a dedicated VM running on a virtual IP.  We will see what
+I can come up with quickly.
+Sadly I do not know any good "reverse proxy" server software,
+as Apache is plain overkill and not really suited to the task
+and Squid is a horrible piece of code for this task.
+Let's see, perhaps Twisted Python can help to create such a beast.
+<br>
+Note that the web pages can stay where they are, because the stress comes
+from all those requests from Internet to I2P and not for the web frontend
+(and some anonymity SSL gateways which were not really meant to be for the
+public, but I don't want to shut them down as quite many people seem
+to use them.)
+<br>
+Some sad record: Load-Average spiked over 50(!) today.  Usually it is at 2-4.
+This load made the machine to block everybody after the first(!) request
+to reduce stress (which only partly helped).  Also all tunnel connections
+to my I2P routers were eaten up, and 250 Apaches (maxed out) were trying
+to keep up with the load. So everything flooded here.
+Perhaps it now is better, we will see.
+
+[2009-01-22] Textmode-Status now lists last probe code
+<br>
+brother@mail.i2p recommended to add the category of the site to the text mode page.
+This was easy to implement.  It is shown only if there is no sort done, though.
+Note that if you select a code (i. E. 200), not all destinations must have the same code,
+as the last probe can differ from the cosen code (selection checks if a certain code
+happened in a certain time duration, not just the last probe).
+
+[2009-01-26] *.b32.i2p destinations are disabled
+<br>
+As the new *.b32.i2p destinations cicrumvent the blocking which
+was implemented here, I disabled them until I can resolve the issue.
+To fix it I have must rewrite a good portion of how this proxy
+works internally, and I think this will take very long.
+So for now, you simply cannot access URLs which end on
+.b32.i2p.to.
+
+[2009-01-22] FAQ section opened
+<br>
+Because Sponge (sponge.i2p) asked me some questions,
+I added a FAQ section.  In this section I will answer publicly
+some questions related to this inProxy.
+
+[2008-12-22] Reduced logging a lot
+<br>
+I have calculated that implementing proper Vorratsspeicherung (VDS)
+conformant logging would cost me around 90000 EUR one time cost
+plus 1500 EUR/day (asking IBM) or 2500 EUR/month (doing it myself).
+This means a minimum monthly cost increase by 50000% or so at my
+side for this I2PinProxy here, let alone the one time cost.
+Therefor I decided not to add logging at all to my I2P-routers
+and risk being sued in case our Federal Constitutional Court will
+not declare the VDS void.  But I am confident it will.
+<br>
+Having no logging at my routers there is no additional benefit by
+doing logging on my I2PinProxy.  However looking at the logging
+I found out that I do not need a lot of the data which was logged.
+So to clean up resource consumption (and therefor manual effort
+to clean it up regularily), I did remove logging where it was not
+needed and such reduced it to the bare minimum where it was needed
+(like for blocking IPs overloading this service here).
+<br>
+Marry Christmas!
+ 
+[2008-10-31] 3 years still beta.
+<br>
+I think it's time for a change. For you this means, this proxy will change it's
+IP to a more powerful VM on one of my other servers.  However this must wait
+until I managed to teach VMware server the most basic security features (one
+property of software from the US seems to be the lacking of even the most
+primitive security features, like: Never open ports on public interfaces.
+Fixing this with netfilter is like letting a bleeding wound bleed,
+but put the person behind glass such that dirt cannot do harm.  But glass
+can be broken quite too easily, so I want to close this type of wound).
+
+[2008-09-13] Bugfix in statistics view (due to history system rework)
+<br>
+Well, changing the history system introduced a bug which made the hist display
+in the Status page, as well as the history click (reachable via the "h" link)
+show outdated data, as it only accessed the old history, not the new one.
+This now has been fixed, hopefully.  Note that the color of the "Time" column
+in the Status page still was correct (it did not rely on the history table).
+
+[2008-09-07] Working over the history system - Part 2
+<br>
+The history table now is switched to the new location.  The new table only
+contains two months of the history today.  So if a resync is needed this will
+fail for some time until it has been fixed.
+<br>
+Note that at the end of the history rework a complete resync will be needed.
+
+[2008-09-06] Backup I2P router running again
+<br>
+Updated to current 0.6.3-3. This is a historic entry.
+
+[2008-09-05] Unexpected Downtime (6)
+<br>
+I am still investigating the real source of the problems.
+Therefor logging increased, webserver reconfigured a bit (nicelevel, maximum number),
+also started to use file locking to prevent some concurrency.
+Perhaps it helps to run some scripts serially instead of parallely,
+hoever this might slowdown some requests (or speed up, will see).
+
+[2008-08-28] I2P destinations are now pointing back to I2P if comming from I2P
+<br>
+One of the longstanding bugs (it was a big annoyance) is now removed:
+If you access this proxy from within I2P, the links to eepsites now no more point outside I2P.
+This new feature has not been debugged thoroughly yet, so let's see if it works.
+If you find bugs, please leave me a message at my pager, it is at
+<a href="http://hydra.geht.net/pager.php">http://hydra.geht.net/pager.php</a>
+or <a href="http://www.tino.i2p/pager.php">http://www.tino.i2p/pager.php</a>
+<br>
+Also done: Rework of the menu, as the menu became too long.
+Now it is splitted into several independent parts.
+I am not completely happy with it, but it is an improvement.
+
+[2008-08-23] Operation instable as my backup I2P router is down
+<br>
+My backup I2P router is the stable one of my routers.  For some unknown
+reason my primary I2P router is very instable in the 64 Bit environment.
+However the machine with the backup I2P router does no more boot for
+unknown reason.  The 2.6-kernel rescue system fails for unknown reason,
+and the 2.4-kernel rescue system is unable to revive the boot process.
+<br>
+Until this problem is fixed there is no backup I2P router.  And therefor
+the operation of this I2P proxy is somewhat instable currently.
+The main I2P router (the one with my eepsite, too) only stays up for
+minutes under the load and then crashes and is rebooted.  Sigh.
+
+[2008-08-13] de-ebook-archiv.i2p blocked.
+<br>
+On request I blocked de-ebook-archiv.i2p.
+See my post to forum.i2p for slightly more information.
+
+[2008-08-07] "deadloop" added
+<br>
+Now expect long red bars in case a destination goes down!
+This feature is experimental and likely to change.
+The deadloop scans "dead" destinations more quickly in future.
+The idea behind this is, a failing destination which was there for a long
+time will be scanned longer than a destination which never showed up.
+For now it must run for several weeks until it cuts down the number of
+failing destinations with a not yet high enough failing probecount.
+Perhaps I will start more than one such deadloop, to speed up the process.
+
+[2008-07-14] Unexpected Downtime (5)
+<br>
+Again down.  I did not find any trace why the machine died.
+This one was a little bit non-symptomatic, as before the machine kept up pinging,
+however this time it died completely.  Perhaps it was EM-Interference (lightning).
+If it continues, I have to improve the logging.
+
+[2008-07-12] Working over the history system
+<br>
+The naive implementation of history now grew the db over 500 MB big, so it is time to rework that.
+As a consequence the graph resync process will not work until it is fixed, too.
+While changing all this, statistics information might be affected.
+Everything else shall be unharmed in the meanwhile.
+
+[2008-07-09] Unexpected downtime (4)
+<br>
+Again a cresh due to OOM.  Still no cause found.
+However I think it's a cascading effect.
+Something hangs, causing processes to be created which then eat up memory.
+Also I think it is triggered from outside (people are overloading this proxy).
+This may be due to insane settings, or just because browsers open too many
+requests in parallel.  Will see.
+Machine now does internal logging of processes etc.
+Hopefully this will reveal the problem when the next crash occurs.
+
+[2008-07-05] Updated pages
+<br>
+Status page (and similar) now automatically switch to text mode on big pages ("All" and "504").
+Text status now can be sorted, too.
+The currently actively used router is shown <b>bold</b> in Process info box now,
+which get's rid of the red bar in case the router2 is used.
+
+[2008-06-22] Updated to 0.6.2
+<br>
+Router1 (which drives my eepsite and other destinations) now updated to 0.6.2, too.
+I had to update (improve) lots of my scripts to do that.
+Now "t" shows: Participating tunnels+In+Out client tunnels
+
+[2008-06-10] Unexpected downtime (3)
+<br>
+I am coming closer to all those downtimes.  As it looks like,
+the machine runs out of free RAM.  Still not knowing what is causing this.
+
+[2008-06-10] Backup router running 0.6.2 temporarily.
+<br>
+0.6.2 seems to have introduced some features which make it hard for me to run it.
+So I am not completely convinced that I can upgrade to 0.6.2 without problems.
+Therefor I will run the backup router on 0.6.2 until I have some data.
+Until July I hope there will be enough status information to see if this
+version is successfully running in my environment or not.
+
+[2008-06-09] Update to 0.6.2 <b>failed</b>! (Updated)
+<br>
+The console was changed in 0.6.2, therefor some of my checkscripts seem to be unable to detect that the router is live and healthy
+(they look at oldconsole.jsp do catch the various counters and tunnel states).
+I think it is because the router needs too long to participates on tunnels now.
+Effectively this hinders my router to work properly, as it is killed all 10 minutes or so by the monitoring system as it is considered "hung".
+<br>
+Until this is resolved I reverted back to 0.6.1.33.
+If you have similar problems, downgrade to 0.6.1.33 is possible manually:
+It's like a manual upgrade, but download instead:
+<ul>
+<li> http://mirror.i2p2.de/i2pupdate_0.6.1.33.zip
+<li> http://mirror.i2p2.de/i2pupdate_0.6.1.33.zip.sig
+</ul>
+Note that your mileage might vary, so perhaps the problems are solely at my side.
+
+[2008-05-15] Unexpected downtime (2)
+<br>
+Again for unknown reason the services on the machine became unresponsive.
+As I was unable to SSH into the machine (ssh never prompted) I had to restart it.
+No traces why this happened again.  As httpd still was operative (but slow as hell)
+I am really puzzled what happened.
+
+[2008-05-12] Main router upgraded to 0.6.1.33
+<br>
+Also I renamed this proxy from "Tino's I2PinProxy" to "I2PinProxy",
+as I think nobody cares about who operates it when accessing i2p.to.
+And there still is the imprint.
+
+[2008-05-09] Unexpected downtime
+<br>
+For unknown reason the LOAD of the machine went up to over 800 and it became unresponsive.
+The trouble started around 8:00 UTC.  At 10:00 UTC I rebooted the machine.
+However it took until I was home again at 14:30 UTC when I managed to get the machine running.
+
+[2008-05-06] Hopefully the 404 phenomenon is fixed now. (Anatomy of a BUG)
+<br>
+Note: Most 404 destinations are removed now and hopefully never show up again.
+The fix involved a short downtime period of the database and a graph resync.
+Doing this fix some (minor) historical data might have become deleted
+(the gathered state according to the last code, this is the first table
+before the long one in history.  This data was not backed up, sorry).
+<br>
+On this proxy, in the status, there are 45 sites in state 404.
+You can see them as a blue ribbon in the graph, too.
+I am puzzled where they come from, as they are not in the addressbook of my routers
+(that's why they respond so quickly and are listed under 404).
+However the router's addressbook shall be the source of all the destinations here.
+That's weird.  I'm scared ;)
+<br>
+OK, just kidding.  It looks like some unknown process concatenates two destinations,
+and adds them to the database.  Plain rubbish which should not be there.  Or to say:
+There's a BUG somewhere I did not find before.
+<br>
+The investigation shows, that I concatenate two host lists.  The first is from the
+main router, the second from the backup router.  The list of the backup router
+(currently) starts with tanstaafl.i2p.  And if the first list does not end on a
+newline (LF), well, you guess it, this will concatenate the last line with the first
+of the second list.  But why is a LF missing?  It's because of some lazieness.
+<br>
+To get the list of destinations from hosts.txt I remove everything after the first
+= on each line.  Now if the transfer of the first list terminates prematurely,
+there is a high probability, that the destination is transmitted, following the =,
+but the rest of the line is broken within the line.  So this line has no LF!
+As I use regexp to remove the =, everything up to - but not including - the LF is
+removed and the line is output.  If there is no LF, it's still missing.
+So this introduces an incomplete line without LF which is concatenated to the first
+line from the second list.  Voila, we got our rubbish!
+<br>
+Well, this bug now is removed, and I killed the wrong destinations from the database.
+Therefor the number of destinations has shrunken and the history of the rubbish
+has been wiped out, too.  This here is only to document that fact.
+
+[2008-05-05] Backup router updated to 0.6.1.33
+<br>
+Sigh .. for some $*^%!@ reason I did not came around to upgrade anything until today.
+Mainly because I seem to be too stupid to get monotone under control to access the
+current devel repository.
+So I now upgraded to 0.6.1.33 (I have missed it was released until today, sorry).
+<br>
+However the history graph now looks very smooth since 2008-05-01, so I think
+it's really a good thing to update.  Let's see how this works out.
+<br>
+The reachability still is at "WARN" state as long as the 4week-flap-count is higher
+than 3 times the "ok"-count (Reachability shows ok/2d/4w where 2d is the 2 day flap
+count and 4w is the 4 week flap count), this may take 2 more weeks, though, as it
+looks at the last 28 days.  In the yearly graph you can see 4w declining fast (the
+big purple line).
+<br>
+And perhaps sometimes I can re-invent a big enough hammer to fix my monotone here ..
+Note that my backup router is meant to be at the devel head and the main router
+to stay a the latest release (or manually updated to a stable devel head).
+With CVS (which I know for nearly 15 years) this was easy (for me),
+but I am still fighting it out with monotone to fit into my (very special) needs.
+
+[2008-04-21] Please <b>upgrade your routers</b> to 0.6.1.32-20!
+<br>
+As you can see in the graphs the network starts to become much more stable again.
+<a href="http://zzz.i2p.to/">ZZZ explains</a> what was changed.
+It looks like this was successful.  A big sigh!
+<br>
+I will now upgrade my Router2 to the current Devel Head again (0.6.1.32-20)
+and if reachability stays as expected my main router will follow soon.
+(Note that, for unknown reason, the I2PinProxy prefers the backup router.)
+
+[2008-03-27] Main router up again
+<br>
+One of the two SATA drives failed.  Luckily it is only the secondary one which
+keeps backup data.  It did not fail completely, however I think it must be
+replaced soon.  More unexpected downtimes are possible because of this.
+<br>
+Note that the main router is responsible for feeding new destinations into this proxy.
+As long as it is down no other destiation sources are polled.
+Also my own eepsite and other destinations are handled by it.
+
+[2008-03-26] Machine with main Router (Seed) and Freenet-Service crashed.
+<br>
+The machine running the primary router, my eepsite, the netDB seed and Freenet
+crashed for unknown reason a few minutes after midnight local time.
+It still pings and accepts network connections, but then it does nothing more.
+Looks like the harddrive is inaccessible which might be a kernel problem or a harddrive crash.
+I will try to revive the machine tonight.
+
+[2008-03-22] Network currently very instable
+<br>
+I do not know what changed last Sunday (2008-03-16 05:00 UTC).
+But from then on things started to become worse.
+I downgraded my routers on 2008-03-13, so this cannot be the cause.
+<br>
+Since march my routers start to shutdown "CRIT" without any cause very often.
+Indicator is a 'PM org.mortbay.jetty.Server$ShutdownHookThread run',
+whatever this means.  It is like some unknown remote process makes my routers
+to stop and then the wrapper then restarts the router.
+I have an internal router restart mechanism if the JVM stops working,
+however this is not involved into this process.  Also there seems to be
+no relation to any log messages (there are simply none) or other local source.
+<br>
+However this also does not seem to be related to the problem observed directly,
+except this problem harms the complete network badly.
+
+[2008-03-14] Running stable on elder router versions again.
+ZZZ wrote on zzz.i2p "we went down to only one floodfill for a couple of hours on March 13, it caused a lot of trouble.".
+(Go to zzz.i2p to see this message.) Perhaps this explains the trouble seen yesterday,
+<br>
+but I do not think that this explains everything in detail.
+Restarting my 0.6.1.32 did not help at my side, but reverting back to 0.6.1.31 had immediate success.
+So I think that there shall be some fallback in the code in case no floodfills are reachable.
+<br>
+Therefor I will wait with updates until forum.i2p.net is back up again,
+as I want first read what others say before doing so.
+As 0.6.1.32 is backward compatible, no big harm is done.
+<br>
+One funny side note about something I do not have any idea why:
+This proxy always operates on the backup router.  This is the machine with less power,
+less RAM, less everything, even less bus width (the main router has 64 bit).
+However the Backup is far more stable.
+<br>
+So when the problem struck at the backup router, switching to the main
+router did not help, because the main router already was broken, too.
+Two out of two (with different hardware) let's me think, that 0.6.1.32 was the source
+of the problems somehow.
+
+[2008-03-13] I2P router trouble.  Reverted back to 0.6.1.30 and 0.6.1.31.
+<br>
+I really have no idea what's going on.
+i2p-projekt.de is out of service and forum.i2p.net is unreachable.
+And now both of my I2P routers (version 0.6.1.32) started failing.
+It looks to me that version 0.6.1.32 has a bug.
+Therefor I reverted back my backup router to 0.6.1.30 and it reintegrated
+into the I2P network (I was able to reach nearly all destinations), but my
+first router (under 0.6.1.32) was unable to reach destinations on my backup router.
+<br>
+This made me downgrade my primary router to 0.6.1.31, too.  Let's see how this works out.
+<br>
+If you are puzzled where you can find the old version:
+<br>- 0.6.1.30 is <a href="/mirror/dev.i2p.net/i2p/">still on my mirror</a>
+(as I did not get around to upgrade the mirroring to the new sites yet)
+<br>- 0.6.1.31 can be found at <a href="http://code.google.com/p/i2p/downloads/list">http://code.google.com/p/i2p/downloads/list</a>.
+<br>[UPDATE 2008-05-05: it's on the deprecated list now.  Note that with 0.6.1.33 out it looks like the problems are solved.]
+<br>
+I think it's enough to grab the i2pupdate.zip (and check the .sig, of course) to downgrade as well.
+(If you ask me how to check the .sig, I really have no idea.  Or moreover, I know how to check
+.sig files, but I really have no idea what a good .sig shall tell me!  It just tells me, that
+the file matches some public key.  And now?  How do I test this public key for correctness?
+However I am telling you that to check such that you do not need to trust me. 
+It's unlikely, but if somebody else would have cracked into my server and changed the file,
+I do not want to be the source of problems at your side.  OK?)
+<br>
+If somebody is curious: I still have the sources of 0.6.1.30-20 around.
+This is because Router2 automatically upgraded against the CVS "the old days".
+And this process then starved when i2p.net came down ..
+
+[2008-03-11] Updated Routers to I2P 0.6.1.32.
+<br>
+Historic entry, just to note.  It maybe that the day is 1 day off the told date.
+
+[2008-03-02] Updated Router2 to I2P 0.6.1.31-0, Router1 will follow soon
+<br>
+As the I2P CVS went down I tried to upgrade my updater process to Monotone.
+However this currently fails because Ubuntu 6.06 LTS does not support Monotone version 6 yet.
+Therefor my update process does not yet support the development head.
+
+[2008-01-29] Bug in freenet server check removed
+<br>
+The freenet server checker did not detect the case where the freenet status starved,
+this is, always stayed the same.  This led to a reporting of the last state instead
+of reporting that something failed.  Because freenet was down for nearly 20 hours
+but this was not detected automatically this bug now has been fixed.
+
+[2008-01-24] Added i2host.i2p as source for destinations.
+<br>
+Actually I created a cron job which pulls new hosts from i2host.i2p and writes those into
+a local hosts.txt file which then can be added to the addressbook.
+If you are interested in the script, it is at http://tino.i2p.to/i2host.sh
+(Note that you have to create an empty i2hosts.txt file first, else it bails out.)
+I run this each 8 hours from cron now.
+
+[2008-01-20] www.i2p is down, see <a href='http://forum.i2p.net/viewtopic.php?p=11167#11167'>see forum.i2p.net</a>
+<br>
+This affects dev.i2p and squid.i2p, too.  The downtime now is over a week.
+And it seems to be unknown why it takes so long to get i2p.net up and running again.
+It's now down for 7 days and the net starts to crumble a bit, see Graph.
+However I think it's only bad luck, as there now is missing a good seed source.
+Therefor I added a seed source at <a href="http://i2pdb.tin0.de/">http://i2pdb.tin0.de/</a>
+
+[2007-12-21] http://trevorreznik.i2p/hosts.txt added as source for destinations.
+<br>
+As orion.i2p is down now for nearly a month, I decided to add a third source for hosts.txt.
+(FYI the first one is from dev.i2p.)
+<br>
+However I now have a lot of destination conflicts as there are different keys in
+those databases.  I have no plan yet how to solve this, but perhaps I must add a
+destination mapper method to map the names free from conflicts.  This would need
+to fundamentally change the way this proxy works, as it then no more checks names.
+Instead it must operate on destinations.
+<br>
+This way would also solve trouble with destinations, which have a name which is
+incompatible(!) to DNS (and therefor cannot be reached by this proxy yet).
+This method would work with two new loops instead of two:
+<br>- The first one checks live destinations each hour as before.
+<br>- The second one checks dead destinations in a loop as before.
+<br>- A third one would try to reach destinations for the first time
+and add them to the live ones as soon as they can be reached.
+If the destination has not yet assigned a name it will get one,
+which might be different to the wanted name (if that is already taken
+or would prove incompatible).
+<br>- A fourth loop will be for fast checking destinations.
+This works like the third one but has a significantly reduced timeout.
+If a destination cannot be reached within a day or so it is handed over
+to the third loop.
+<br>- A fifth loop will remove a dead destination from the second loop
+after a year or so and add it to the fourth loop.
+<br>
+Well, leave this to next year.  But one important note:
+<b>Probably I will drop support for names of the form numbers.i2p</b>,
+where numbers is a number counting from 0 to infinity.
+All destinations then get such a fixed number when they are added the first time,
+regardless of reachability.  This way this number never changes in future.
+Also note that the number will be a hash (initialized by the destination key),
+not a count, so you will not see any real sequence.
+(The hash will be something like:
+Use dest as a number, have some fixed primes p[n] which are all different.
+base[0]:=0. n:=0.
+loop:
+n:=n+1.
+base[n]:=base[n-1]+p[n].
+k:=base[n-1]+(dest%p[n]).
+if hash[k] is not empty then goto loop.
+hash[k]:=dest. end.
+This way you will see increasing numbers which are not sequenced.
+Also note that you can speed up this algorithm, because if you know that
+all slots of a particuliar prime are populated, you can start with a higher n.
+As destinations are cryptographic numbers the probabilty that all slots
+are populated is very high, else the destination generator would have a bug.
+Even in this case you can rise the starting n, then not all slots are populated,
+which is not needed at all.  So if you happen to loop more than 10 times, you can
+just rise n for the next invocation.  This way this algorithm is nearly constant
+in time.  FYI: Always try to use algorithms with O(n)=1.  If you cannot
+do that and limit the numbers somehow, try O(n)=ld n, O(n)=n or O(n)=n ld n.
+Abstain from algorithms with a higher complexity.  Always check your software
+with counters bejond the billions.  And tell this Microsoft.  For example:
+Outlook only allows 2 GB of mail storage.  At my side this limit is reached
+within 20 hours ..)
+
+[2007-12-15] This proxy switches name to <a href="http://i2p.to/">http://i2p.to/</a> soon.
+<br>
+Merry Xmax I2P from Tino.
+
+[2007-11-19] Announced downtime 2007-11-21 22:00 UTC.
+<br>
+According to my ISP the server will not be available from
+22:00 UTC to 07:00 UTC of the following day.  The system
+will shut down 30 minutes prior to the downtime.  However
+I cannot take it online, as I am at work, and it has a lower
+priority than other servers I own which go down, too.
+So do not expect this system to be available before
+2007-11-23 again.  Sorry for the delay.
+
+[2007-10-09b] Minor issues and bugfix, updated to 0.6.1.30
+<br>
+The proxy tunnel starved again, perhaps because I left not
+enough time between upgrading my two routers.  The code was
+considered to recover itself, but due to a bug this did not
+happen.  This bug now has been removed, so hung connections
+shall cleanup themself now as expected.
+<br>
+Also thanks for noting inproxy.tino.i2p in I2P's readme.html!
+It was already done for 0.6.1.29, but I wasn't aware of ;)
+
+[2007-09-29] Changed networking parameters
+<br>
+If this machine becomes unresponsive, try again 15 minutes later,
+as the new parameters then shall have cleaned up the mess.
+Before it took over 2 hours to recover from such an "attack".
+<br>
+In detail:
+As a countermeasure against broken clients out there which
+flooded this system with connections in CLOSE_WAIT state
+this machine now has a very short keepalive timeout.  The
+/proc/sys/net/ipv4/tcp_keepalive_time now is 120.
+This means, after 120 seconds inactivity keepalive messages
+are sent and if those are not answered within 10 minutes the
+connection is teared down.  Perhaps I make this timing even
+tighter in future so that the grace period goes below 5 minutes.
+
+[2007-09-15] The torcheck feature was removed.
+<br>
+On 2007-07-07 I installed an updated version of the "dig" tool from
+the official bind distributon.  Sadly, the ISC version was not compatible
+to the SuSE dig which went unnoticed by me.  The result was, that no
+TOR IP was detected anymore.  Not a lethal bug, though.
+Anyway, I detected that the TORcheck list I used (tor.dnsbl.sectoor.de.)
+ceased to work and I was not able to find a proper replacement.
+So I disabled this feature again until I can find something reasonable
+that works in a reliable fashion.  It should be called 'anoncheck'
+anyway, as only checking for TOR is suboptimal.
+
+[2007-08-24] Bug in the unblocking code has been fixed.
+<br>
+As unblocking takes place some hours after the block, it was not tested.
+And therefor it did not work, I'm sorry.  Those IPs which got blocked were
+never unblocked.  This bug has been fixed now (hopefully).
+Note that 6 IPs were affected in the last week.
+
+[2007-08-19] IPs with excessive requests are now blocked on IP level.
+<br>
+People do not want to hear.  So I had to define more tight countermeasures.
+The solution is easy:  IPs which do more than 1 request per second in average
+are now blocked on IP level, this means, these IPs are locked out of all
+services (including primary nameservices and other webservices).
+This way those abusing IPs cannot continue to excessively consume resources.
+<br>
+Note that it is nearly impossible to do that many requests if you access
+this proxy with sane settings, as this blocking kicks in if you exceed your
+limit with 9000(!) requests.  So if you are blocked, just wait 2 to 3 hours,
+and you are back in business.
+<br>
+If you change your IP to escape this filter:  Your system will quickly reach
+the given limit again and thus is then blocked again, automatically.  So
+do not try to circumvent the blocks, it's futile, just set your system to
+sane values (ONE downloading thread maximum) and this system will never
+(hopefully) harm your downloads.  If you do normal browsing, this block
+shall not affect you ever, too.
+
+[2007-08-13] Freenet server crashing.
+<br>
+For some reason the freenet server (Java service) repeatably crashes.
+It first crashed with a Buffer Overflow due to some bad network packets,
+then, after updating the seednodes.ref, it crashes with OOM while booting.
+I increased the memory from 700 to 900 MB.  However I am not able to keep
+the memory usage this high on this machine, as freenet then uses up more
+than 100% of the memory this way.  Because of this I reduced the filestore
+from 99GB to 90GB.  Will see if this helps in future.
+
+[2007-06-08] New manually compiled kernel installed.
+<br>
+As there still was this resource leakage (related to file descriptors)
+which made the system become unresponsive after 4 days or so,
+a new kernel has been compiled and installed now.
+Also /etc/sysctl.conf entry fs.file-max reduced to 25000,
+and the affected system resources are now added to my central monitoring.
+Let's see how this works out. (Apparently this one works correctly.)
+
+[2007-05-14] Again downtime of about 100 minutes: Memory leak at the kernel layer.
+<br>
+There apparantly is a memory leak at the kernel layer in this machine somewhere.
+I really don't know what happens, but after shutting down all processes
+with only the minimum processes active I had 700 MB allocated on a machine
+with 768 MB total virtual address space.  This all started when the machine was
+rebooted some months ago and therefor came up with a newer kernel.
+So I tried an older kernel, but the machine did not boot with it
+(thanks to missing modules deinstalled by SuSE), so I had to use the recovery
+system to re-install an elder kernel.
+<br>
+The high stress in the last days combined with the memory leak got the
+machine to "go over the edge" quickly.  However when the problem struck
+today the load was very normal (the blocking was successful), so I was able to
+track down the problem a little bit further.  Now the machine runs again with
+an older kernel.  Let's see what future brings.  If it still does not help,
+I will consider to compile an own kernel etc. (or upgrade this machine to Debian).
+
+[2007-05-11] Found and corrected source of recent downtimes (I hope).
+<br>
+Currently IP 61.171.21.209 is stress-testing my server.  From this
+IP over a thousand(!) connections can be seen here permanently:
+<pre>
+1890 61.171.21.209 SYN_RECV=28 ESTABLISHED=2 FIN_WAIT1=21 FIN_WAIT2=5 TIME_WAIT=1831 CLOSING=3
+</pre>
+Luckily, most of them are in TIME_WAIT, that is they are already
+closed and besides of this listing they do not consume much resources.
+However please observe the high number of SYN_RECVs, too, so this
+moron tries to open over 20 connects per second to my web server,
+which shall only have 25 threads max!
+<br>
+Due to a race condition my bridging code was not able to completely
+block all requests, so this person found out that by raising the
+request rate to insane levels my block could be bypassed a bit.
+However this bug now is fixed.  Over one million(!) requests
+now have been successfully blocked for the last minutes(!)
+from this single source, and not a single one bypassed the block.
+<br>
+But no, I am not angry (only a little bit because some moron out
+there abuses free resources this way, and no, this is not relieved
+because this IP is from China and thus they shall not use I2P).
+I am not particuliar angry, because this gives me the opportunity
+to make this service more robust against any type of abuse.
+Doing so in an automated way is far better than complaining anywhere
+because some moron misbehaves.
+<br>
+Please note that, thanks to this person, I am now able to develop a
+second line of defense based on route blocking.  This is because this
+futile attempts nearly use up 2 GB traffic per day(!) or nearly
+10% of the free traffic of my server.  Automatically blocking the
+route will free this traffic for more important things than waste.
+<br>
+To stress it:  These blocks are neccessary for two reasons:
+First, my machine is unable to cope with such a load, as this
+machine only has 256 MB RAM, but even if I put in 10 GB RAM
+this would overwhelm the machine, as you can only handle this load
+through commercial expensive load balancer techniques (you need to
+distribute the load on N+2 machines for N such morons).
+But more important, this might overload destinations within I2P,
+as these destinations will see hundreds of connects comming from me.
+I do not like to cause trouble at others, therefor my countermeasures.
+
+[2007-05-04 and 2007-05-09] Downtimes because of resource shortage.
+<br>
+For unknown reason the machine came down on those two dates because
+all RAM was used up.  The cause for this resource shortage was found
+in 2007-05-11 I hope.
+
+[2007-04-27] Machine was unavailable for approx 7:20 hrs.
+<br>
+After 702 days the machine became unresponsive because of resource
+shortage.  It went out of file handles so that I had to reboot
+the machine.  Unfortunately there was a new not yet activated
+kernel installed which booted but was not able to activate the
+networking.  The error was tracked down to a missing module in
+initrd.  Originally the file was there, however by installing
+the new kernel also the initrd of the old kernel apparently was
+rebuild, too, and thus showed the same error (thanks for this
+faulty behavior goes to SuSE and perhaps partly to fou4s).
+With the recovery system the settings were corrected, such that
+the current kernel now loads the needed network drivers.
+<br>
+I think the missing setup was in the machine since it was installed,
+it was harmless until mk_initrd was called and thus needed drivers
+were no more loaded.  Please also note that I currently don't know
+why all filehandles on the machine were used up.  Logfiles did not
+help in this riddle.  I have to extend logging to be able to track
+down such errors in future (that's what this is all about, right?).
+
+[2007-04-25] <b>A too high request rate now blocks your IP.</b>
+<br>
+Abusive access limiting now is in place.  If you open too many requests
+in parallel, this proxy will block your IP until your request rate
+reaches sane values.  Note that you can prohibit this from occurring
+by making sure to not leave many open connections to the web port
+of this proxy.  So be sure your software correctly terminates the
+connection before you open another one.
+<br>
+Broken firewalls tear down connections which have no traffic after a
+while without closing the connection properly.  In this case you
+can end up blocked even if you only do single connections.  If youj
+leave open 50 "single connections", you use up 50 web service threads,
+which is too much from one IP (and thus further requests are blocked
+by this proxy).
+<br>
+You can tell the block is active if you are transferred to the "block"
+page of this proxy when you try to access any eepsite through it.
+The block automatically is removed if your IP stays silent for a while,
+such that the pile of connects time out (which can take some hours).
+<br>
+Note that this is a fully automatic process.  So you cannot even
+escape it by changing your IP or using several IPs in parallel.
+This proxy starts to block IPs as soon as it becomes overloaded.
+So if you see a block you overloaded this service and trying to
+circumvent this block only overloads this service further.  So the
+blocking kicks in even faster and becomes tighter.  All you can
+do is DoS this service, you cannot improve your throughput.
+<br>
+<b>The only way to increase the speed is to install I2P at your side!</b>
+And this way you do not need this proxy here any more, as you are
+then directly connected to the I2P network.  Note that installing I2P
+nearly is a one-click process.  (Well, all you must do after installing
+I2P is to configure your browser to use I2P as a proxy.)
+
+[2007-04-19] I reactivated I2P bridging again.
+<br>
+Sorry, but some people startet to overwhelm this web server here with
+more than 150 parallel downloads, such that this system here was no more
+able to handle the number of connections.  As the I2P proxy is not the
+only service on this webserver, I had to take countermeasures and shut
+down the proxy for a while until those people went off.
+<br>
+Now I was able to re-activate the proxy again.  Sorry for the delay.
+<br>
+I don't want to blame those people, because I don't know if these know
+about I2P.  The proxy is not telling them yet, so perhaps they thought
+"let's grab it before it goes away" and did as fast as they were able to.
+They cannot know that it's destructive at my side.
+<br>
+The problem is not the traffic imposed or the load.  It's the simple fact
+that this proxy service was never thought to handle such demands.  It shall
+tell people to do the right thing, that is, install I2P and do the downloads
+in anonymity.  This way here is dangerous, as this system here still takes
+logs (it's exerimental and it tells you you are not anonymous) and thus
+I can (and will!) hand out logs to authorities (if they ask).  I must do
+this, because I want this service to stay alive.
+<br>
+(Some notes to the authorities: If some I2P service is unwanted, I can
+block it!  All you need to do is to explain me what and why.  However
+I am not able to do selective locks, so all I can do is block a destination
+completely.  However I am not the only proxy allowing others to access
+I2P from non-I2P-enabled sites.)
+
+[2007-04-18] I think I found and fixed the bug in the graph calculation.
+<br>
+Previously I thought it was a race condition which made the graph calculation
+behave irregular and start over from the date 0, however it was a database
+lock.  As sqlite then outputs the error to stdout (instead stderr) this
+gave some irregular input to the pipe to the further processing script.
+(The fact that sqlite gives an error code does not help in pipe situations.)
+Now I check for these irregular input such that database locks cannot
+disturb the process any more (I hope).
+
+[2007-04-17] Changed the graph subsystem.
+<br>
+As the RRD updating via cron had a race condition again,
+I now wrote another independently running subsystem script.  This
+shall get rid of such conditions in future.  The script is monitored
+by the (heavily modified old) cron script which updates the process
+table (Reachability) accordingly.  It should not look differently,
+though, only the resyncing process now is automatic and faster.
+
+[2007-03-21] Proxy downtime yesterday
+<br>
+For unknown reasons the I2P router did not come up correctly after a
+machine restart due to a power loss due to infrastructure replacement
+at the ISP.  After the I2P router service was restarted the problem
+vanished.  Also unknown is why the I2PinProxy did not switch to the
+backup router (it only does so when the main router becomes unavailable,
+in this case it was available but malfunctioning as it seems).
+You can see this in the graph as the number of destinations dropped to
+nearly none (only local destinations staied reachable, though).
+Downtime was several hours, afterwards everything went back to normal.
+I am currently improving some background services of the inProxy,
+it shall not affect reachability.
+
+[2007-03-16] Legends improved
+<br>
+Some of the explaining texts were missing or misleading.
+
+[2007-03-01] Search engine improvements.
+<br>
+To reduce the confusion of search engines, I added some heuristics,
+which hopefully will keep them away from pages which they do not need,
+by setting the robots-directives in the status.php page headers to guide the
+machines to output pages with sane values only.  This shall remove the
+clutter within search engines and hopefully improves the usefullness of this proxy.
+
+[2007-02-26] TOR detection added and a bug in the new check script of I2P router 2 removed.
+<br>
+Well, the TOR thingie already is some days old now.  I added some
+highly experimental routines to detect if you come from a TOR gateway.
+This is done with help of http://www.sectoor.de/tor.php
+The detection is done in background to improve fault tolerance, so
+it does not show your TOR status immediately.  Also it does not work
+perfectly, so it may be that you surf via TOR but this presence is not
+detected.  The background process is "torcheck" in the Process table.
+<br>
+Due to the fixed bug router 2 always was rebootet after 10 minutes of
+operation and was reported non-working in the process information
+window, too.  Because of a major cold I wasn't able to detect and fix
+this bug more early.  However I don't think this has to do with the
+"yellowness" of some probes.  Still don't know why this happens and
+the effects seem to decline by itself in the last days.  Really weird.
+
+[2007-02-22] For some unknown reason my router show "yellow spikes"
+since some patches introduced after 0.6.1.26 but before 0.6.1.27.
+<br>
+I don't know if it is is of local origin, but I did not change anything
+except updating the version to 0.6.1.26-something.  However this effect
+did not immediately show up after the upgrade (if I remember right),
+it showed up a little bit later.  So it either is a local effect
+(which I doubt as I did not change anything) or it is a network issue
+(either within I2P or my ISP).  I really don't know, but for now we
+have to live with the yellow spikes.  You can tell this from the fact,
+that more than one hourly process is running very often, as there are
+a lot of (over 100) destinations probed (as the red line is far above
+the graph) and the high number of 000 destinations.
+<br>
+Note that this yellowness seems to show up after the router is running
+for quite a while (yellow hops in the daily graph).  As the router is
+instable under my 64 Bit OS
+(which is perhaps caused by the JVM version of Ubuntu64 6.06 LTS)
+I think this yellowness now is a sign for the nearby crash (starvation)
+of the router, and thus can be fixed within Java.  But I don't know how
+to do it myself as I don't hack the router.  And more important I really
+don't know why this shows up now.  Either the I2P network reached a
+size which triggers this effect or a patch introduced after the
+release version of 0.6.1.26 has such a side effect (as it then shows the
+crash more clearly this is a good thing, but a thing I cannot fix).
+<br>
+So for now we have to live with this, and that the statistics shows the
+reachability "very poor" or even worse.
+
+[2007-02-15] For some reason there was some "yellowness" of the router.
+You can tell this from the much work of the "hourly" processes piling
+up in the status (right top of each page).
+<br>
+For some days probes came out randomly with 0 after 30 seconds.
+Except for this everything looked pretty normal.
+After an update to the latest devel version (0.6.1.26-19)
+and a router restart this problem vanished.
+I really don't know know what this was and it hopefully
+doesn't show up again.  The many hourly processes shall depile
+tomorrow when the amount of work goes back to normal.
+This behavior is by design.
+<br>
+Note that this problem is only loosely related to the problem
+that the graph got out of sync.  This came from a race condition
+(yes, this is a bug) in the scripts which perhaps was triggered by
+the amount of work seen due to the problem noted above.  The graph
+is resyncing slowly and shall be back operational in some days.  I
+speed up things a little bit by running the sync manually (while
+the manual process runs the graph vanishes), however to get really
+get rid of this problem these parts need a complete redesign which
+has no high priority yet.
+<br>
+My monitoring has been changed to inform me about irregular states
+like these above, such that I hopefully will detect this more quickly
+in future.
+
+[2007-01-07] An unplanned 3hrs outage at the ISP level made
+this proxy unreachable.
+<br>
+Both I2P routers and the freenet node were not affected.
+
+[2006-12-05] My freenet node runs instable because of
+Java Heap Space issues.
+<br>
+Even 1 GB heap space is not enough for it to run.
+After 10 minutes so the java processes fill all the
+available RAM and after an hour or so they start to
+get in trouble.  Then the freenet node starts to
+become instable and crashes later.
+Don't found a workaround yet.
+<br>
+Perhaps it has to do with the increased datastore?
+I would like to test JVM 1.4, however I did not find one
+running on the 64 bit platform.
+
+[2006-11-23] Had to increase the number of interconnecting
+tunnels to the I2P router from 50 to 250.  This is due to
+some people using DownThemAll with insane settings.
+<br>
+This was needed to handle the increased load on the
+I2PinProxy, as over 60 Apache worker processes waited to
+get a chance to connect to the router.  Maximum number of
+clients is 150, though.  If this still increases, I have
+to move the I2PinProxy handling server to another machine.
+<br>
+It looks like some people out there start to leech I2P
+via my proxy using DownThemAll with over 40(!) parallel downloads
+to do partial transfers.  Well, I understand your needs, I2P
+sometimes is slow and you can tell DownThemAll to use many
+partial transfers to speed up the transfer.  But, please,
+this is extremely destructive to others, as this occupies
+trainloads of resources on servers.
+<br>
+I would suggest that you reduce the load a little bit (10
+parallel downloads per IP max), as I don't want to implement
+countermeasures.  And yes, I can do this, but I don't want
+to.  However I don't blame you, I only ask for some mercy ;)
+
+[2006-11-13] The I2PinProxy is running on the main router again.
+<br>
+The old broken router machine was replaced by a new server.
+I managed to activated I2P on this new server again.
+Hopefully it runs smoothly again.
+<br>
+At the current throughput of 120 KB/s the machine utilizes
+up to 105% CPU (well, it's a Dual Core, so it can reach 200%),
+which tells me that I2P still has too high CPU needs.
+
+[2006-10-04] Running on the backup router as long as
+it takes to take the new replacement machine online.
+<br>
+The new machine has more than double the capacity of the
+old one, has 10 MBit/s flat and is ordered until,
+at least, mid 2008.  It's running Ubuntu 6.06 LTS and
+hopefully will do a good job the next years.
+
+[2006-09-30] Main I2P router is instable and
+switching to the instable backup I2P router forth and back.
+So things are very instable for the moment.  Sorry!
+<br>
+The machine running the I2P router currently has a lot of
+trouble.  It shows a strange error such that I now ordered
+a replacement machine.
+<br>
+In the meanwhile I switch this service (manually) forth and
+back to my backup I2P router.  However the latter is not
+running stable yet (this time it's a software or resource
+problem).
+
+[2006-09-29] Expect instabilities.  The machine running the
+I2P router has strange memory bit errors.
+<br>
+Memory test says everything is OK, so I contact the ISP to ask
+what options I have.
+
+[2006-09-29] I2PinProxy runs on my instable backup I2P router.
+Some destinations are not reachable because of this.
+<br>
+The server of my main I2P router is down for maintainance.
+This means, the freenet node is down, too.
+
+[2006-09-17] Unplanned downtime due to the server failing again.
+<br>
+This time the machine stayed up but the router crashed and did
+not come up again due to a corrupt file.  However the error was
+spurious (the byte error disappeared by itself) which suggests
+that the machine either has harddrive or RAM issues.  My
+suggestion is that there is slightly defective RAM.
+However I do not have the time to investigate deeper now.
+
+[2006-09-16] Unplanned downtime of a little more than 12 hours.
+The machine running the router crashed for unknown reason.
+<br>
+I had no time to investigate immediately, but when I came around
+all I was able to find was "just a crash with some kernel OOPSes",
+so the machine was restarted and got back to work.
+
+[2006-09-15] The router hung but the kill script did not work.
+<br>
+Apparently java does not always go away with a simple kill, it must be
+killed -9 to do so.  Script was changed accordingly.
+
+[2006-09-09] Updated router to I2P 0.6.1.25.  Changed monitoring scripts
+a little bit.
+
+[2006-09-08] Trouble ahead, sorry!  The machine running the I2P router and
+freenet server (it does not run this I2PinProxy) currently is overloaded.
+I reconfigured a little bit in this machine such that it - hopefully - can
+cope with this situation better now.
+<p>
+It is unknown how long this situation will last, but I am informed quickly
+about such failures thanks to my obscure automated monitoring services.
+<p>
+Please note that this I2PinProxy still has experimental status.
+Some other additional services which have productive status were moved
+to the machine as it is the "hot spare" for such situations.  The machine
+barly has enough resources to run everything, so services are prioritized.
+Freenet, with the lowest priority, stopped working today as there simply
+were too few resources left for it to keep up even basic things.  For the
+moment Freenet is running again.
+
+[2006-08-22] The statistics graph now is in the rebuilt phase.  It will take
+some time until the graph is synced again.  The status now shows when the
+graphs (which calculates the reachability too) is not up to date.
+<p>
+Only the reachability prognosis and the history graph was affected by this
+bug.  The probe loops overcame this trouble nearly unharmed.
+<br>
+For some unknown reason the statistics calculation failed to work.
+Looks like the scripts stumbled upon some serious database locks which
+lead to a race condition rendering the current state garbage.
+From there on some domino effect happened which led to false error conditions
+to the monitoring, which in turn alerted me to fix it (oh well ..).
+<br>
+I should rewrite the cron jobs into a ptybuffer autostart loop, such that
+no such race conditions can show up again in future.  Let's see when I find
+the time to do so.
+
+[2006-08-20] The router stopped working for unknown reason and was killed.
+As the restart feature wasn't yet working as expected, downtime was 9 hours.
+<br>Fixed this, so the router restarts automatically in future in such cases.
+The good news is, as orion.i2p is back, new destinations start to show up again.
+
+[2006-08-12] Started a second experimental I2P router
+based on <a href="http://permalink.de/tino/i2p-build">build from CVS</A>.
+
+[2006-08-05] The status page now is standalone for better search machine optimization.<br>
+[2006-07-29] Updated to 0.6.1.24 which needs a lot of RAM but works very stable.
+
+[2006-07-28] Updated to 0.6.1.23 which is extremely instable.
+Added a killscript which kills the I2P router when the router
+console becomes unreachable (so the router stops working).
+This keeps the I2PinProxy somehow operable, but the reachability
+is a mess.
+
+[2006-07-20 16:30 UTC] The machine with the I2P router crashed again.
+The monitoring system detected it as intended.  But there now
+is a bad "yellow spike" in the reachability graph of I2PinProxy,
+as the probe loops did not detect that the router became offline.
+This bug now has been fixed.  Note that there are no new probes
+now which can be entered in the graphs, so they show a
+"white area" until new probes come in.  This behavior is by purpose.
+
+[2006-06-02] All important parts run smoothly now.  At least locally.
+Optics improved (you cannot see this with IE as IE has CSS issues)
+and minor bugs fixed.  Now the second step of the inProxy improvements
+can start:
+<br>
+<ol>
+<li> Daemonize the tasks which currently loop from shell.
+<br>
+<li> Start to implement the forwarder which does proxy warnings,
+censoring and caching.
+<li> Implement some further UI features like "search/quickjump".
+<li> Leave behind minor bugs like the non working Mirror.
+</ol>
+Don't expect anything in the next few months, though, but I hope to be able
+to start to gather some proxy (thus local) statistics in the next weeks.
+
+[2006-04-16] "flaps" added to the graph.  Router version now shows uptime, too.
+Also there is now a "Reachability" prognosis shown in the top right box.
+
+[2006-04-13] This pages are now compliant to HTML 4.01 according to W3C, too.
+See check-buttons at the bottom.
+
+[2006-04-01] This pages are now compliant to HTML according to HTMLtidy.
+And this is no april's fool ;)
+
+[2006-03-29] Today my provider is somewhat instable.
+You can see this that the "hourly" processes pile up on the top right.
+
+[2006-03-08] For some days now my I2P router is somewhat instable.
+The automatic relaunch fails due to a too short timeout.
+I am working on the problem.  Stay tuned, and sorry!
+Note that you cannot see this in the probe history, as the probes
+are detected as false (most time; Some yellows still show up) and
+are not counted.  But you can see it in the probe history if you examine
+the timestamps (for this click on the "h" link of a destination).
+
+[2006-02-22] I2P 0.6.1.11-0 is much more stable than 0.6.1.10.
+InProxy downtimes shall be less frequently, it looks like reachability
+is back to normal.
+
+[2006-02-20] I2P 0.6.1.10-0 extremely instable but old versions are incompatible.
+If the "hourly" (right top) pile up while eepsites become "yellow", it's likely
+that I have to reboot the router manually.  Afterwards the eepsites show up
+"green" again while the "hourly" slowly depile ..
+
+[2006-02-19] I2P 0.6.1.10-0 crashed because it ate all diskspace.
+See <A HREF="http://forum.i2p.net/viewtopic.php?p=6860#6860">Forum</A>.
+Fixes applied.
+
+[2006-02-17] Updated to I2P 0.6.1.10-0.  As it is not compatible to 0.6.1.9
+you can see in the statistics how the network became unreachable until I came
+arround to update.
+
+[2006-01-18] The bandwidth of the whole machine has reached 2 GB in December.
+I am in the phase of considering a move of this service to another site.
+This will take some weeks.  In the meanwhile:
+Feel free to use it.  But use it wisely and don't abuse it.  Thanks.
+
+[2005-11-14] This proxy uses a bandwidth below 100 MB/month today.
+This is far below 10 GB/month, the maximum level I can spare on this machine.
+If the traffic exceeds 1 GB/month I will start to consider moving this
+service to a dedicated machine.
+So feel free to use it.  But use it wisely and don't abuse it.  Thanks.

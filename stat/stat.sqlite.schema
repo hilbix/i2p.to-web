@@ -1,0 +1,61 @@
+create table t_block
+  (
+    c_name,
+    c_total,
+    primary key ( c_name )
+  );
+create table t_count
+  (
+    c_name,
+    c_timestamp,
+    c_code,
+    c_count,
+    c_count_ok,
+    c_count_error,
+    primary key ( c_name )
+  );
+create table t_last
+  (
+    c_name,
+    c_timestamp,
+    c_code,
+    c_total,
+    primary key ( c_name, c_timestamp desc )
+  );
+create table t_log
+  (
+    c_name,
+    c_timestamp,
+    c_code,
+    c_total,
+    c_req_size,
+    c_head_size,
+    c_content_type,
+    c_head,
+    c_modified,
+    primary key ( c_name, c_code )
+  );
+create table t_postprocess
+  (
+    c_host,
+    c_state,
+    primary key ( c_host )
+  );
+create table t_proc
+  (
+    c_name,
+    c_timestamp,
+    c_pid,
+    c_state,
+    c_starttime,
+    c_seconds,
+    c_at,
+    primary key ( c_name, c_pid )
+  );
+create index i_count_code on t_count
+  (
+    c_code
+  );
+create index i_last_timestamp on t_last ( c_timestamp, c_name );
+create index i_log_code_timestamp on t_log ( c_code, c_timestamp );
+create index i_log_timestamp on t_log ( c_timestamp );

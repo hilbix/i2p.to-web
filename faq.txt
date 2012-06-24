@@ -978,3 +978,17 @@ The solution here is able to scale, in that, it is easy to add other relays to i
 I will happily dedicate the domain i2p.to into such a project, as well as the complete code base of this inProxy.
 However this group, in contrasts to the I2P team, must stay fully publicly.
 
+<a name="source"></a>
+<b>Q: Can I have the source code of your inProxy?</b>
+<p>
+A: It now starts to appear on <a href="https://github.com/hilbix/i2p.to">GitHub</a>.
+<ul>
+<li> The GitHub repositories are not yet complete.
+<li> I do not have the time to document anything or help you out on understanding it.
+<li> I never had the time to create something clean and easy to read.
+<li> It is a big bunch of messy scripts, partly in zillions of different programming languages.
+<li> It uses some very special tools, some <a href="http://www.scylla-charybdis.com/tool.php">are written by me</a>.
+<li> It was not done to keep you in a sane mind, it was just put together in a hurry.
+</ul>
+<p>
+You have been warned.

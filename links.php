@@ -30,6 +30,7 @@ procstate();
 <li> Germany Privacy Foundation e.V. <a href="https://www.awxcnx.de/">https://www.awxcnx.de/</a> supports SSL.<br>
      This proxy can be reached as <a href="http://awxcnx.i2p.to/">http://awxcnx.i2p.to/</a> via plain HTTP as well (this is a DNS forward, so it works even if this proxy here is down)<br>
      and as <a href="http://awxcnx.i2p/">http://awxcnx.i2p/</a> from within I2P.  It also is a TOR hidden service.
+<li> <a href="http://www.i2p.us/">i2p.us</a>
 <li> I will add more if you tell me the URL.
 </ul>
 

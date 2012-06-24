@@ -1,13 +1,4 @@
 #!/bin/sh
-# $Header: /home/tino/CVSROOT/i2pinproxy/stat/stat.inc,v 1.2 2008/09/13 21:26:58 tino Exp $
-#
-# $Log: stat.inc,v $
-# Revision 1.2  2008/09/13 21:26:58  tino
-# hist.sqlite changes, now new history table is used
-#
-# Revision 1.1  2008/08/28 11:02:36  tino
-# Added
-#
 
 cd "`dirname "$0"`" || exit
 
@@ -23,7 +14,7 @@ $*" | sqlite stat.sqlite
 : qh
 qh()
 {
-echo ".timeout 20000
+echo ".timeout 200000
 $*" | sqlite hist.sqlite
 }
 
@@ -37,14 +28,26 @@ $*" | sqlite mail.sqlite
 : inserter
 inserter()
 {
+missing=false
 stamp="`date -ur "out/$1/$1.time" +'%Y-%m-%d %H:%M:%S'`" || return
 head="`sed "s/'/''/g" "out/$1/$1.head" 2>/dev/null`" || return
-if [ ".HTTP/1.0 404 I2P server down" = ".$head" ]
-then
+case "$head" in
+"HTTP/1.0 404 I2P server down")
 	echo "I2P server down"
 	sleep 60
 	return
-fi
+	;;
+"HTTP/1.1 404 Domain Not Found"*)
+	# The target is not in the router's address book.
+	# In router before 0.9 this was 504.
+	# Now since 0.9 this is 404 which is slightly more correct but bad for our statistics.
+	# Set a missing flag such that we can transform the code into 666 below.
+	# (Codes must be exactly 3 numbers for other scripts to correctly function.)
+	missing=:
+	# Question: Can this be faked by an EEPSITE?
+	# If so, we need to add some more checks here.
+	;;
+esac
 mod="`sed -n 's/^Last-Modified: //pI' "out/$1/$1.head" 2>/dev/null`"
 if [ -n "$mod" ]
 then
@@ -63,9 +66,11 @@ if	expr + "$line" : "'[0-9]\\+','[.0-9]\\+','[0-9]\\+','[0-9]\\+','[^']*'\$" >/d
 then
 	code="`expr + "$line" : '\([^,]*\),'`"
 	time="`expr + "$line" : '[^,]*,\([^,]*\),'`"
+	# Put destinations without addressbook into code class 666
+	$missing && code="'666'"
 	case "$code" in
 	\'[23]??\')	upd=",c_count_ok=c_count_ok+1"; additional "$1";;
-	\'504\')	upd=",c_count_error=c_count_error+1";;
+	\'504\'|\'666\')	upd=",c_count_error=c_count_error+1";;
 	\'000\')	case "$time" in \'0.[0-6]*) echo "too quickly $1: $line"; sleep 60; return;; esac;;
 	*)		upd="";;
 	esac

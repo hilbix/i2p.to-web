@@ -1,3 +1,8 @@
+[2012-06-24] Statistics will fix itself over the next weeks.
+<br>
+The cause for big blue in the statsitics is found.  Since 0.9 the router (correctly) returns 404 (Not Found) on missing domains instead of 504 (Gateway Timeout).  My system here was unable to cope with this new status code and such did not ignore those and listed them 'blue'.  Note that over 2000(!) destinations are gone until I somehow find out how to extract all the missing destinations from my old backups (mainly because there are more important problems, which consume all time, which I can afford for I2P).
+This bug now should be fixed.  Hopefully.  Unreachable destinations now will get the pseudo code 666 and will start to show up in the status slowly.  I am not really sure that the new status code does not break some other things, but we will see ;)
+
 [2012-06-23] It's all blue and I have not the slightest idea.
 <br>
 Well, the stats shows that 404 is now quite common.  The last router's reboot was 19 days ago and this seems to be the time where the spook began.

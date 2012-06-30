@@ -33,11 +33,12 @@ stamp="`date -ur "out/$1/$1.time" +'%Y-%m-%d %H:%M:%S'`" || return
 head="`sed "s/'/''/g" "out/$1/$1.head" 2>/dev/null`" || return
 case "$head" in
 "HTTP/1.0 404 I2P server down")
+	# The special transport wrapper sends this magic if it cannot connect
 	echo "I2P server down"
 	sleep 60
 	return
 	;;
-"HTTP/1.1 404 Domain Not Found"*)
+"HTTP/1.1 "[45][0-9][0-9]" Domain Not Found"*)
 	# The target is not in the router's address book.
 	# In router before 0.9 this was 504.
 	# Now since 0.9 this is 404 which is slightly more correct but bad for our statistics.

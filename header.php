@@ -43,6 +43,13 @@ $advert='<div class="ad">Schlie&szlig;lich ist die Freiheit nicht umsonst: (Anze
 $advert='';
 
 ob_start();
+$htmlCode = 200;
+function htmlcode($code, $what)
+{
+GLOBAL $htmlCode;
+$htmlCode=$code;
+header("HTTP/1.0 $code $what");
+}
 
 # Domain to add to the I2P destination, with the DOT but without the trailing DOT
 # Call with a name ending on .i2p
@@ -202,7 +209,9 @@ function qh($s, $single=0)
 
 function head($head,$noindex=0,$nofollow=0,$frameset=0,$cgi=0)
 {
-  GLOBAL $working, $have_frames, $textonly;
+  GLOBAL $working, $have_frames, $textonly, $headerflags;
+
+  $headerflags = sprintf("%d%d", $noindex, $nofollow);
 
   $hinf	= ob_get_contents();
   ob_end_clean();
@@ -223,7 +232,7 @@ function head($head,$noindex=0,$nofollow=0,$frameset=0,$cgi=0)
 <head>
 <title><?=htmlentities($head)?> -- I2PinProxy</title>
 <link rel="stylesheet" type="text/css" href="/css.css">
-<meta name="robots" content="<?if($noindex) echo "no"?>index,<?if($nofollow) echo "no"?>follow">
+<meta name="ROBOTS" content="<?if($noindex) echo "NO"?>INDEX,<?if($nofollow) echo "NO"?>FOLLOW">
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <? if (!$have_frames) echo $hinf; ?>
 <base target="_top">
@@ -475,7 +484,7 @@ function paramfatal($p)
 {
   GLOBAL $myparamfatal;
 
-  header("HTTP/1.0 400 Bad Request");
+  htmlcode(400, "Bad Request");
   if ($myparamfatal)
     $myparamfatal($p);
   stdparamfatal($p);
@@ -544,7 +553,7 @@ fclose($fd);
 
 function foot()
 {
-  GLOBAL $startmicro, $startusage, $have_frames, $textonly, $version, $isanon;
+  GLOBAL $startmicro, $startusage, $have_frames, $textonly, $version, $isanon, $headerflags, $htmlCode;
 ?>
 <? if (!$have_frames): ?>
 <hr>
@@ -578,5 +587,6 @@ worum es sich bei diesem Proxy handelt.)
 </html>
 <?
 flush();
+if ($lfd = @fopen('/tmp/php-timing.log', 'a')) { fprintf($lfd, "%7.3f %s %s %s '%s' '%s' '%s'\n", ($endmicro-$startmicro), $headerflags, $htmlCode, $_SERVER["PHP_SELF"], $_SERVER["QUERY_STRING"], $_SERVER["HTTP_REFERER"], $_SERVER["HTTP_USER_AGENT"]); fclose($lfd); }
 }
 ?>

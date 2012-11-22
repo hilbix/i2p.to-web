@@ -3,11 +3,9 @@
 #
 # $Log: overload.php,v $
 # Revision 1.1  2012-05-06 09:45:27  tino
-# added
-#
 
 include("header.php");
-header("HTTP/1.0 503 Temporary block");
+htmlcode(503, "Temporary block");
 header("Retry-After: 90");
 head("proxy temporarily overloaded",1);
 

@@ -21,7 +21,7 @@
 # New menu structure
 
 include("header.php");
-header("HTTP/1.0 503 Temporary block");
+htmlcode(503, "Temporary block");
 header("Retry-After: 1000");
 head("request blocked by proxy",1);
 

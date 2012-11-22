@@ -15,7 +15,7 @@
 # Old URLs to i2p.net disabled
 
 include("header.php");
-header("HTTP/1.0 503 downtime");
+htmlcode(503, "downtime");
 header("Retry-After: 3600");
 head("I2Pinproxy currently offline, sorry!");
 showpeerwarning();

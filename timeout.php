@@ -9,7 +9,7 @@
 # More help
 
 include("header.php");
-header("HTTP/1.0 504 timeout");
+htmlcode(504, "timeout");
 head("Destination unreachable");
 showpeerwarning();
 

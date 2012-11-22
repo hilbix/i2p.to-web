@@ -9,7 +9,7 @@
 # Improved output, hint where to find after installing I2P
 
 include("header.php");
-header("HTTP/1.0 410 disabled");
+htmlcode(410, "disabled");
 head("This site is disabled",1);
 showpeerwarning();
 

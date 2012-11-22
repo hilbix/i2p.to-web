@@ -9,7 +9,7 @@
 # New menu structure
 
 include("header.php");
-header("HTTP/1.0 403 closedown");
+htmlcode(403, "closedown");
 head("fproxy blocked due to abuse, sorry!");
 procstate();
 ?>

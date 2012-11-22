@@ -9,7 +9,7 @@
 # b32.i2p blocked
 
 include("header.php");
-header("HTTP/1.0 403 not allowed");
+htmlcode(403, "not allowed");
 head("b32.i2p addresses are not reachable",1);
 showpeerwarning();
 

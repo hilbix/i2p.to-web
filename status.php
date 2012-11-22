@@ -6,10 +6,13 @@ $code	= param("code",		'[0-9]*',	'200');
 $oktime	= param("oktime",	'[1-9][0-9]*',	'5');
 $text	= param("text",		'[0-1]');
 $hist	= param("hist",         '[-0-9]*',	28);
+
+$ni	= ($oktime!=5 || $hist!=28 || ( isset($_GET["order"]) && $_GET["order"]!='a.c_name'));
+if (!$ni):
 ?>
 <meta name="revisit-after" content="12 hours">
 <?
-$ni	= ($oktime!=5 || $hist!=28 || ( isset($_GET["order"]) && $_GET["order"]!='a.c_name'));
+endif;
 head("($code)",$ni,($ni || $code=='' || substr($code,0,1)=="5" || substr($code,0,1)=="6"));
 ?>
 <a href="text.php"><img src="_.gif" alt="[text version of this page]" border=0 hspace=0 vspace=0 align=left></a>
